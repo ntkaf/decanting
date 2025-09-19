@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+  xmlns:core="sap.ui.core"
+  xmlns:f="sap.f"
+  xmlns="sap.m"
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+  <Page id="detailSelectBoxTypePage" class="sapUiNoContentPadding">
+    <FlexBox
+      alignItems="Start"
+      justifyContent="Center"
+      wrap="Wrap"
+      fitContainer="true"
+      class="sapUiResponsiveContentPadding scanContainer"
+      items="{data>/BoxTypesItems}">
+
+      <f:Card class="scanCard sapUiContentPadding sapUiSmallMargin" press="onToteSelected">
+        <f:layoutData>
+          <FlexItemData baseSize="45%" growFactor="0" />
+        </f:layoutData>
+
+        <f:content>
+          <VBox alignItems="Center" justifyContent="Center" width="100%" class="scanCardContent">
+            <core:Icon src="{data>icon}" size="4rem"/>
+            <Title level="H1" class="sapUiSmallMarginTop" text="{data>itemDescription}" />
+            <Button text="{i18n>Next}" press="onToteSelected" app:toteId="{data>itemType}" width="12rem"/>
+          </VBox>
+        </f:content>
+      </f:Card>
+
+    </FlexBox>
+  </Page>
+</core:FragmentDefinition>

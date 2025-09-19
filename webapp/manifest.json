@@ -1,0 +1,126 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "com.westernacher.decanting",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.7",
+      "toolsId": "e11ea644-f40d-47d9-b76f-7164daf178f4"
+    },
+     "dataSources": {
+      "HU": {
+        "type": "JSON",
+        "uri": "model/HUDetails.json"
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.140.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.westernacher.decanting.i18n.i18n"
+        }
+      },
+      "data":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "HU",
+        "settings": {
+          "sizeLimit": 1000
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.westernacher.decanting.view",
+        "async": true,
+        "viewPath": "com.westernacher.decanting.view"
+      },
+      "routes": [
+        {
+          "name": "RouteDecanting",
+          "pattern": "Decanting/:?query:",
+          "target": [
+            "TargetDecanting"
+          ]
+        },
+        {
+          "name": "RouteScanHU",
+          "pattern": ":?query:",
+          "target": [
+            "TargetScanHU"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetDecanting": {
+          "id": "Decanting",
+          "name": "Decanting"
+        },
+        "TargetScanHU": {
+          "id": "ScanHU",
+          "name": "ScanHU"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.westernacher.decanting.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "comwesternacherdecanting"
+  }
+}

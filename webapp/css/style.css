@@ -1,0 +1,81 @@
+/* Enter your custom styles here */
+/* Make the FlexBox take full height so the card centers vertically */
+.scanContainer { height: 100%; }
+
+/* Add some breathing room inside the card */
+.scanCard .sapFCardContent { padding: 2rem; }
+
+/* On very small screens, let the card shrink a bit */
+@media (max-width: 420px) {
+  .scanCard { width: 90vw; }
+}
+
+.likeFormText {
+    color: gray;
+}
+.huHeaderBorder {
+/* border-color: #bdbdbd;
+    border-style: solid;
+    background-color: white; */
+
+    box-shadow: 0 8px 24px 0 rgba(0,0,0,.12);
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* odstępy między kartami – działa na FlexBoxie */
+.scanContainer.sapMHBox { 
+  gap: 24px;                 /* odstęp h+v, większy niż blur cienia */
+  align-content: flex-start; /* ładne zawijanie wierszy */
+}
+
+/* każda karta zajmuje dokładnie pół wiersza minus pół 'gap' z każdej strony */
+.scanContainer .sapFCard {
+  flex: 0 0 calc(100% - 12px);  /* 12px = połowa z 24px gapu */
+  max-width: calc(100% - 12px);
+  box-sizing: border-box;       /* padding/border wliczone do szerokości */
+  margin: 0;                    /* ważne: brak dodatkowych marginesów */
+}
+
+/* 1 kolumna na wąskich ekranach */
+@media (max-width: 800px) {
+  .scanContainer .sapFCard {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+/* Center board and give it breathing room */
+.tote8Container { min-height: calc(100vh - 8rem); gap: 12px; }
+
+/* Board itself */
+.toteGrid {
+  gap: 16px;
+  padding: 16px;
+  width: min(920px, 92vw);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.12);
+  box-sizing: border-box;
+}
+
+/* Cells (cards) */
+.toteCell { width: 100%; min-height: 140px; }
+.toteCellBtn { padding: 16px; }
+
+/* Side labels */
+.toteLabel { font-weight: 600; opacity: .6; }
+.toteLabelTop, .toteLabelBottom { font-size: 1.25rem; }
+.toteLabelLeft, .toteLabelRight {
+  font-size: 1.1rem;
+  writing-mode: vertical-rl;
+}
+.toteLabelLeft  { transform: rotate(180deg); margin-right: 12px; }
+.toteLabelRight { margin-left: 12px; }
+
+/* One column on small screens */
+@media (max-width: 768px) {
+  .toteGrid .sapFCard { flex-basis: 48% !important; }
+}
+@media (max-width: 520px) {
+  .toteGrid .sapFCard { flex-basis: 100% !important; }
+}

@@ -1,0 +1,33 @@
+<mvc:View controllerName="com.westernacher.decanting.controller.ScanHU"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+    <Page id="scanPage" enableScrolling="false">
+    <content>
+      <FlexBox
+        alignItems="Center"
+        justifyContent="Center"
+        fitContainer="true"
+        class="sapUiResponsiveContentPadding scanContainer">
+
+        <f:Card width="28rem" class="scanCard">
+          <f:content>
+            <VBox alignItems="Center" justifyContent="Center" width="100%" class="scanCardContent">
+              <core:Icon src="sap-icon://bar-code" size="4rem"/>
+              <Title id="scanTitle" level="H1" class="sapUiSmallMarginTop" text="Scan HU" />
+              <Input
+                width="12rem"
+                id="ScanHUInput"
+                placeholder="Scan or enter HU"
+                class="sapUiMediumMarginTop"
+                search=".onSearchHU" />
+                <Button text="{i18n>Next}" press="onPressConfirmHUButton" width="12rem"/>
+            </VBox>
+          </f:content>
+        </f:Card>
+
+      </FlexBox>
+    </content>
+  </Page>
+    </mvc:View>

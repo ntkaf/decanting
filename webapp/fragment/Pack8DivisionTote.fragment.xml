@@ -1,0 +1,64 @@
+<core:FragmentDefinition
+  xmlns:core="sap.ui.core"
+  xmlns:f="sap.f"
+  xmlns="sap.m"
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+  <Page id="detailPack8DivisionPage" class="sapUiNoContentPadding" >
+    <customHeader>
+      <Toolbar>
+        <Title level="H2" text="8-Division Tote"/>
+        <ToolbarSpacer/>
+        <ObjectStatus title="Tote ID" text="TOTE-2354922" state="Information"/>
+
+      </Toolbar>
+    </customHeader>
+    	<ObjectHeader
+		id="oh1"
+		responsive="true"
+		binding=""
+		intro="Selected item"
+		title="8-Division Tote"
+
+		backgroundDesign="Translucent">
+    	<statuses>
+			<ObjectStatus title="Tote ID" text="TOTE-2354922" state="Information"/>
+		</statuses>
+    	
+    </ObjectHeader>
+    <content>
+      <VBox alignItems="Center" justifyContent="Center" width="100%" height="100%" class="tote8Container">        
+        <Text text="A" class="toteLabel toteLabelTop"/>
+        <HBox alignItems="Center" justifyContent="Center" class="toteBoardRow">         
+          <Text text="B" class="toteLabel toteLabelLeft"/>
+        
+          <FlexBox id="tote8Grid"
+                     alignItems="Stretch"
+                     justifyContent="SpaceBetween"
+                     wrap="Wrap"
+                     class="toteGrid"
+                     items="{data>/totes}">
+            <f:Card class="toteCell">
+              <f:layoutData>                
+                <FlexItemData baseSize="20%" growFactor="1"/>
+              </f:layoutData>
+              <f:content>
+              <VBox alignItems="Center" justifyContent="Center" width="100%">
+              <Title text="{data>name}"/>                
+                <Button type="Transparent" icon="sap-icon://add" width="100%" height="100%" press=".onPressDivision" class="toteCellBtn" app:divisionId="{data>id}"/>
+                <StepInput
+                width="6rem"
+						value="{data>/selectedItem/quantity/amount}"
+						min="1"
+						max="{data>/selectedItem/quantity/amount2}"
+            visible="{= ${data>status} === 'selected'? true: false}"/>
+                </VBox>
+              </f:content>
+            </f:Card>
+          </FlexBox>          
+          <Text text="D" class="toteLabel toteLabelRight"/>
+        </HBox>        
+        <Text text="C" class="toteLabel toteLabelBottom"/>
+      </VBox>
+    </content>
+  </Page>
+  </core:FragmentDefinition>

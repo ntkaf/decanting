@@ -1,0 +1,411 @@
+{
+  "123": {
+    "huId": "RSIT-HU-0001",
+    "huType": "PALLET_EU",
+    "status": "RECEIVED",
+    "warehouse": "RSI-DC1",
+    "storageLocation": "GR-ZONE-A1",
+    "createdAt": "2025-09-18T09:15:00Z",
+    "lastUpdated": "2025-09-18T12:30:00Z",
+    "grossWeightKg": 498.6,
+    "tareWeightKg": 25.0,
+    "netWeightKg": 473.6,
+    "totalVolumeM3": 2.84,
+    "Location": "A-13-088",
+    "dimensions": {
+      "lengthCm": 120,
+      "widthCm": 80,
+      "heightCm": 160
+    },
+    "carrier": {
+      "name": "RS Logistics",
+      "trackingNo": "RL-IT-2398456"
+    },
+    "items": [
+      {
+        "itemId": "HU-0001-01",
+        "poNumber": "45001234",
+        "poItem": "00010",
+        "vendor": {
+          "id": "VND-IT-0301",
+          "name": "Phoenix S.r.l."
+        },
+        "material": {
+          "id": "MAT-110001",
+          "description": "DIN Rail Terminal Block 2.5mm², Grey"
+        },
+        "ean": "4017918170001",
+        "quantity": {
+          "amount": 100,
+          "amount2": 100,
+          "uom": "EA"
+        },
+        "packPerSell": 50,
+        "instructions": "Pack per sell: 50 pcs per bag. Tighten 0.5–0.6 Nm.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": true
+        },
+        "weightKg": 2.2,
+        "volumeM3": 0.006,
+        "dimensions": {
+          "lengthCm": 30,
+          "widthCm": 20,
+          "heightCm": 10
+        }
+      },
+      {
+        "itemId": "HU-0001-02",
+        "poNumber": "45001234",
+        "poItem": "00020",
+        "vendor": {
+          "id": "VND-IT-0310",
+          "name": "ifm electronic s.r.l."
+        },
+        "material": {
+          "id": "MAT-120045",
+          "description": "Inductive Proximity Sensor M12, 10–30V DC"
+        },
+        "ean": "4021179023456",
+        "quantity": {
+          "amount": 40,
+          "amount2": 40,
+          "uom": "EA"
+        },
+        "packPerSell": 10,
+        "instructions": "ESD care. Do not drop. Pack per sell: 10.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": false
+        },
+        "weightKg": 3.2,
+        "volumeM3": 0.018,
+        "dimensions": {
+          "lengthCm": 40,
+          "widthCm": 30,
+          "heightCm": 15
+        }
+      },
+      {
+        "itemId": "HU-0001-03",
+        "poNumber": "45001234",
+        "poItem": "00030",
+        "vendor": {
+          "id": "VND-IT-0322",
+          "name": "SKF Italia S.p.A."
+        },
+        "material": {
+          "id": "MAT-130210",
+          "description": "Deep Groove Ball Bearing 6204-2RS"
+        },
+        "ean": "7316571234567",
+        "quantity": {
+          "amount": 200,
+          "amount2": 200,
+          "uom": "EA"
+        },
+        "packPerSell": 20,
+        "instructions": "Greased. Keep clean. Pack per sell: 20.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": true
+        },
+        "weightKg": 22.0,
+        "volumeM3": 0.06,
+        "dimensions": {
+          "lengthCm": 60,
+          "widthCm": 40,
+          "heightCm": 25
+        }
+      },
+      {
+        "itemId": "HU-0001-04",
+        "poNumber": "45005678",
+        "poItem": "00010",
+        "vendor": {
+          "id": "VND-IT-0333",
+          "name": "Schneider Electric"
+        },
+        "material": {
+          "id": "MAT-210090",
+          "description": "Miniature Circuit Breaker 3P, 16A, C-curve"
+        },
+        "ean": "3606481234561",
+        "quantity": {
+          "amount": 60,
+          "amount2": 60,
+          "uom": "EA"
+        },
+        "packPerSell": 12,
+        "instructions": "Upright only. Max stack 4. Pack per sell: 12.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": false
+        },
+        "weightKg": 12.0,
+        "volumeM3": 0.072,
+        "dimensions": {
+          "lengthCm": 60,
+          "widthCm": 40,
+          "heightCm": 30
+        }
+      },
+      {
+        "itemId": "HU-0001-05",
+        "poNumber": "45005678",
+        "poItem": "00020",
+        "vendor": {
+          "id": "VND-IT-0340",
+          "name": "RS PRO (RS Group)"
+        },
+        "material": {
+          "id": "MAT-220300",
+          "description": "Cable Gland M20, IP68, Nylon, Black"
+        },
+        "ean": "5056111234567",
+        "quantity": {
+          "amount": 300,
+          "amount2": 300,
+          "uom": "EA"
+        },
+        "packPerSell": 100,
+        "instructions": "Pack per sell: 100. Fit with matching locknut.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": false
+        },
+        "weightKg": 8.0,
+        "volumeM3": 0.04,
+        "dimensions": {
+          "lengthCm": 50,
+          "widthCm": 40,
+          "heightCm": 20
+        }
+      },
+      {
+        "itemId": "HU-0001-06",
+        "poNumber": "45007890",
+        "poItem": "00010",
+        "vendor": {
+          "id": "VND-IT-0355",
+          "name": "Festo S.p.A."
+        },
+        "material": {
+          "id": "MAT-230510",
+          "description": "Pneumatic Solenoid Valve 5/2, 24V DC"
+        },
+        "ean": "4052561234563",
+        "quantity": {
+          "amount": 30,
+          "amount2": 30,
+          "uom": "EA"
+        },
+        "packPerSell": 5,
+        "instructions": "Oil-free air only. Pack per sell: 5.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": false
+        },
+        "weightKg": 9.0,
+        "volumeM3": 0.048,
+        "dimensions": {
+          "lengthCm": 60,
+          "widthCm": 40,
+          "heightCm": 20
+        }
+      },
+      {
+        "itemId": "HU-0001-07",
+        "poNumber": "45007890",
+        "poItem": "00020",
+        "vendor": {
+          "id": "VND-IT-0366",
+          "name": "Phoenix Contact Italia S.r.l."
+        },
+        "material": {
+          "id": "MAT-240030",
+          "description": "DIN Rail 35mm Slotted, 2m (Steel, Zn)"
+        },
+        "ean": "4046356234567",
+        "quantity": {
+          "amount": 10,
+          "amount2": 10,
+          "uom": "EA"
+        },
+        "packPerSell": 5,
+        "instructions": "Long item. Do not bend. Pack per sell: 5.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": true
+        },
+        "weightKg": 12.0,
+        "volumeM3": 0.02,
+        "dimensions": {
+          "lengthCm": 200,
+          "widthCm": 10,
+          "heightCm": 10
+        }
+      },
+      {
+        "itemId": "HU-0001-08",
+        "poNumber": "45009911",
+        "poItem": "00010",
+        "vendor": {
+          "id": "VND-IT-0377",
+          "name": "Siemens S.p.A."
+        },
+        "material": {
+          "id": "MAT-310010",
+          "description": "PLC CPU Module S7-1200, 24V DC"
+        },
+        "ean": "4025511234564",
+        "quantity": {
+          "amount": 12,
+          "amount2": 12,
+          "uom": "EA"
+        },
+        "packPerSell": 1,
+        "instructions": "ESD sensitive. Keep dry. Pack per sell: 1.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": false
+        },
+        "weightKg": 6.0,
+        "volumeM3": 0.024,
+        "dimensions": {
+          "lengthCm": 40,
+          "widthCm": 30,
+          "heightCm": 20
+        }
+      },
+      {
+        "itemId": "HU-0001-09",
+        "poNumber": "45009911",
+        "poItem": "00020",
+        "vendor": {
+          "id": "VND-IT-0388",
+          "name": "Legrand Italia S.p.A."
+        },
+        "material": {
+          "id": "MAT-320077",
+          "description": "Cable Trunking 60×60mm, 2m, PVC"
+        },
+        "ean": "3414971234568",
+        "quantity": {
+          "amount": 40,
+          "amount2": 40,
+          "uom": "EA"
+        },
+        "packPerSell": 10,
+        "instructions": "Do not stack heavy loads on top. Pack per sell: 10.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": true
+        },
+        "weightKg": 28.0,
+        "volumeM3": 0.05,
+        "dimensions": {
+          "lengthCm": 200,
+          "widthCm": 30,
+          "heightCm": 12
+        }
+      },
+      {
+        "itemId": "HU-0001-10",
+        "poNumber": "45012345",
+        "poItem": "00010",
+        "vendor": {
+          "id": "VND-IT-0399",
+          "name": "Henkel Loctite"
+        },
+        "material": {
+          "id": "MAT-330300",
+          "description": "Loctite 243 Threadlocker, 50ml"
+        },
+        "ean": "5010266234562",
+        "quantity": {
+          "amount": 80,
+          "amount2": 80,
+          "uom": "EA"
+        },
+        "packPerSell": 10,
+        "instructions": "Keep upright. 15–25°C. Pack per sell: 10.",
+        "flags": {
+          "requiresReconditioning": false,
+          "firstReceipt": false
+        },
+        "weightKg": 6.4,
+        "volumeM3": 0.024,
+        "dimensions": {
+          "lengthCm": 40,
+          "widthCm": 30,
+          "heightCm": 20
+        }
+      }
+    ]
+  },
+  "BoxTypesItems": [
+    {
+      "itemType": "1division",
+      "itemDescription": "Single Division Exotec",
+      "icon": "sap-icon://rhombus-milestone"
+    },
+    {
+      "itemType": "8division",
+      "itemDescription": "8 Division Exotec",
+      "icon": "sap-icon://database"
+    },
+    {
+      "itemType": "highBay",
+      "itemDescription": "High Bay Tote",
+      "icon": "sap-icon://shelf"
+    },
+    {
+      "itemType": "trolley",
+      "itemDescription": "Trolley",
+      "icon": "sap-icon://cart"
+    }
+  ],
+  "totes": [
+    {
+      "id": "1",
+      "status": "notselected",
+      "name": "1"
+    },
+    {
+      "id": "2",
+      "status": "notselected",
+      "name": "2"
+    },
+    {
+      "id": "3",
+      "status": "notselected",
+      "name": "3"
+    },
+    {
+      "id": "4",
+      "status": "notselected",
+      "name": "4"
+    },
+    {
+      "id": "5",
+      "status": "notselected",
+      "name": "5"
+    },
+    {
+      "id": "6",
+      "status": "notselected",
+      "name": "6"
+    },
+    {
+      "id": "7",
+      "status": "notselected",
+      "name": "7"
+    },
+    {
+      "id": "8",
+      "status": "notselected",
+      "name": "8"
+    }
+  ]
+}

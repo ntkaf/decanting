@@ -1,0 +1,88 @@
+<core:FragmentDefinition
+  xmlns:core="sap.ui.core"
+  xmlns:ux="sap.uxap"
+  	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+  xmlns="sap.m">
+  <Page id="masterProductsPage" title="HU Details with Products" class="sapUiNoContentPadding">
+    <content>
+    <VBox class="huHeaderBorder sapUiTinyMargin">
+    <Title text="{data>/123/huId}" level="H1" titleStyle="H3" class="sapUiTinyMargin"/>
+   
+			<l:VerticalLayout class="sapUiSmallMargin">
+				<ObjectStatus title="Location" text="{data>/123/Location}"/>
+				<ObjectStatus title="Scanned" text="17:03:21"/>
+			</l:VerticalLayout>
+         
+            </VBox>
+            <Toolbar>
+            <Title text="Products"/>
+            </Toolbar>
+      <List
+        id="listProducts"
+        items="{
+          path: 'data>/123/items'
+        }"
+        mode="None"
+        itemPress=".onProductItemPress"
+        growing="true"
+        growingScrollToLoad="true">
+
+        <CustomListItem type="Active">
+        <VBox class="sapUiTinyMargin">
+        <HBox>
+        <core:Icon src="{parts:[{path: 'data>flags'}, {path: 'data>status'}], 
+                            formatter: '.formatter.statusIcon.bind($controller)'}" size="2rem" color="{parts:[{path: 'data>flags'}, {path: 'data>status'}], 
+                            formatter: '.formatter.statusIconColor.bind($controller)'}" class="sapUiSmallMarginEnd"/>
+        <Title text="{data>material/description}" wrapping="true" class="sapUiTinyMarginBottom"/>
+        </HBox>
+          <HBox justifyContent="SpaceBetween" alignItems="Start" width="90%" class="sapUiTinyMargin sapUiSmallMarginBegin">
+          
+            <VBox width="75%">
+              <ObjectStatus title="EAN" text="{data>ean}"/>
+              <ObjectStatus title="PO" text="{data>poNumber}"/>
+              <ObjectStatus title="Vendor" text="{data>vendor/name}"/>
+              
+            </VBox>
+
+           
+            <VBox width="25%" alignItems="End" alignContent="SpaceBetween" justifyContent="SpaceBetween" height="100%">
+              <ObjectNumber number="{data>quantity/amount}" unit="{data>quantity/uom}" emphasized="true" class="sapMObjectNumberLarge" state="Information"/>
+              
+            </VBox>
+          </HBox>
+          </VBox>
+          	<!-- <f:SimpleForm id="SimpleFormDisplay354"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="{data>material/description}"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="Name" />
+				<Text id="nameText" text="{SupplierName}" />
+				<Label text="Street/No." />
+				<Text text="{Street} {HouseNumber}" />
+				<Label text="ZIP Code/City" />
+				<Text text="{ZIPCode} {City}" />
+				<Label text="Country" />
+				<Text id="countryText" text="{Country}" />
+			</f:content>
+		</f:SimpleForm> -->
+        </CustomListItem>
+
+      </List>
+    </content>
+  </Page>
+</core:FragmentDefinition>

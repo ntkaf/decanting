@@ -1,0 +1,8 @@
+<core:FragmentDefinition
+  xmlns:core="sap.ui.core"
+  xmlns:f="sap.ui.layout.form"
+  xmlns="sap.m">
+  <Page id="detailPackOtherPage" title="Products" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToProductsListPress">
+
+  </Page>
+</core:FragmentDefinition>
