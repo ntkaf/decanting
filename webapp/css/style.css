@@ -79,3 +79,10 @@
 @media (max-width: 520px) {
   .toteGrid .sapFCard { flex-basis: 100% !important; }
 }
+.readyForPackingBackground {
+  background-color: aliceblue !important;
+}
+
+.packedBackground {
+  background-color:rgb(108, 219, 182) !important;
+}

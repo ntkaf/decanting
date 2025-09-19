@@ -52,34 +52,7 @@
             </VBox>
           </HBox>
           </VBox>
-          	<!-- <f:SimpleForm id="SimpleFormDisplay354"
-			editable="false"
-			layout="ResponsiveGridLayout"
-			title="{data>material/description}"
-			labelSpanXL="3"
-			labelSpanL="3"
-			labelSpanM="3"
-			labelSpanS="12"
-			adjustLabelSpan="false"
-			emptySpanXL="4"
-			emptySpanL="4"
-			emptySpanM="4"
-			emptySpanS="0"
-			columnsXL="1"
-			columnsL="1"
-			columnsM="1"
-			singleContainerFullSize="false" >
-			<f:content>
-				<Label text="Name" />
-				<Text id="nameText" text="{SupplierName}" />
-				<Label text="Street/No." />
-				<Text text="{Street} {HouseNumber}" />
-				<Label text="ZIP Code/City" />
-				<Text text="{ZIPCode} {City}" />
-				<Label text="Country" />
-				<Text id="countryText" text="{Country}" />
-			</f:content>
-		</f:SimpleForm> -->
+
         </CustomListItem>
 
       </List>

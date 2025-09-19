@@ -2,17 +2,10 @@
   xmlns:core="sap.ui.core"
   xmlns:f="sap.f"
   xmlns="sap.m"
+  	xmlns:ux="sap.uxap"
   xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-  <Page id="detailPack8DivisionPage" class="sapUiNoContentPadding" >
-    <customHeader>
-      <Toolbar>
-        <Title level="H2" text="8-Division Tote"/>
-        <ToolbarSpacer/>
-        <ObjectStatus title="Tote ID" text="TOTE-2354922" state="Information"/>
-
-      </Toolbar>
-    </customHeader>
-    	<ObjectHeader
+  <Page id="detailPack8DivisionPage" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToSelectTotePress">
+    	<!-- <ObjectHeader
 		id="oh1"
 		responsive="true"
 		binding=""
@@ -23,8 +16,29 @@
     	<statuses>
 			<ObjectStatus title="Tote ID" text="TOTE-2354922" state="Information"/>
 		</statuses>
-    	
-    </ObjectHeader>
+    	<headerContainer>
+      </headerContainer>
+    </ObjectHeader> -->
+    	<ux:ObjectPageHeader id="headerForTest"
+							  objectTitle="TOTE-2354922"							  
+							  objectSubtitle="8-Division Tote"
+							  isActionAreaAlwaysVisible="true"
+							  showPlaceholder="true">
+				<!-- <ux:navigationBar>
+					<Bar>
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" tooltip="nav-back"/>
+						</contentLeft>
+						<contentMiddle>
+							<Text text="Employee Profile"/>
+						</contentMiddle>
+					</Bar>
+				</ux:navigationBar> -->
+				<ux:actions>
+					<ux:ObjectPageHeaderActionButton press="onCompleteTotePress" text="Complete Tote" tooltip="tree" hideText="false" type="Emphasized"/>
+					<ux:ObjectPageHeaderActionButton press="onChangeTotePress" text="Change Tote" tooltip="action" hideText="false" type="Emphasized"/>
+				</ux:actions>
+			</ux:ObjectPageHeader>
     <content>
       <VBox alignItems="Center" justifyContent="Center" width="100%" height="100%" class="tote8Container">        
         <Text text="A" class="toteLabel toteLabelTop"/>
@@ -46,11 +60,15 @@
               <Title text="{data>name}"/>                
                 <Button type="Transparent" icon="sap-icon://add" width="100%" height="100%" press=".onPressDivision" class="toteCellBtn" app:divisionId="{data>id}"/>
                 <StepInput
+                id="StepInputProductId"
                 width="6rem"
 						value="{data>/selectedItem/quantity/amount}"
 						min="1"
 						max="{data>/selectedItem/quantity/amount2}"
             visible="{= ${data>status} === 'selected'? true: false}"/>
+            <Button width="100%" press=".onCloseTote" text="Close" class="toteCellBtn" app:divisionId="{data>id}" visible="{= ${data>status} === 'selected'? true: false}"/>
+            <Text text="{data>itemDescription}" visible="{= ${data>status} === 'closed'? true: false}" class="sapUiSmallMargin"/>
+            
                 </VBox>
               </f:content>
             </f:Card>

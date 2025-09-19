@@ -6,6 +6,6 @@
   	<IllustratedMessage
 					illustrationType="sapIllus-NoSearchResults"
 					title="Select Item"
-					description="Description"/>
+          description="You need to select item to start packing"/>
   </Page>
   </core:FragmentDefinition>

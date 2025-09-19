@@ -31,12 +31,23 @@
 				<Text text="{data>vendor/name}" />
         <Label text="L / W / H" />
 				<Text text="{data>dimensions/lengthCm} / {data>dimensions/widthCm} / {data>dimensions/heightCm} cm" />
-        <Label text="Total Volume" />
-				<Text text="{volumeM3} m3" />
+        <Label text="Volume" />
+				<Text text="{data>volumeM3} m3" />
         <Label text="Weight" />
 				<Text text="{data>weightKg} kg" />
+				<Label text="Number" />
+				<Text text="{data>quantity/amount} {data>quantity/uom}" />
 
+				
 			</f:content>
 		</f:SimpleForm> 
+		<VBox alignContent="Center" justifyContent="Center" alignItems="Center">
+		
+		</VBox>
+		<footer> 
+		<Toolbar>
+		<Button text="Print Labels" press="onPressPrintLabel" type="Emphasized"/>
+		</Toolbar>
+		</footer>
   </Page>
 </core:FragmentDefinition>
