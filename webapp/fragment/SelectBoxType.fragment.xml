@@ -5,7 +5,30 @@
   xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 
   <Page id="detailSelectBoxTypePage" class="sapUiNoContentPadding">
-    <FlexBox
+   <FlexBox
+        alignItems="Center"
+        justifyContent="Center"
+        fitContainer="true"
+        class="sapUiResponsiveContentPadding scanContainer">
+
+        <f:Card width="28rem" class="scanCard">
+          <f:content>
+            <VBox alignItems="Center" justifyContent="Center" width="100%" class="scanCardContent">
+              <core:Icon src="sap-icon://bar-code" size="4rem"/>
+              <Title level="H1" class="sapUiSmallMarginTop" text="{i18n>ScanDestinationHU}" />
+              <Input
+                width="12rem"
+                id="ScanDestinationHUInput"
+                placeholder="{i18n>ScanOrEnterDestinationHU}"
+                class="sapUiMediumMarginTop"
+                search=".onSearchHU" />
+                <Button text="{i18n>Next}" press="onPressConfirmScanHUButton" width="12rem"/>
+            </VBox>
+          </f:content>
+        </f:Card>
+
+      </FlexBox>
+    <!-- <FlexBox
       alignItems="Start"
       justifyContent="Center"
       wrap="Wrap"
@@ -27,6 +50,6 @@
         </f:content>
       </f:Card>
 
-    </FlexBox>
+    </FlexBox> -->
   </Page>
 </core:FragmentDefinition>

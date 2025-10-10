@@ -5,7 +5,7 @@
   <Page id="detailNoItemSelectedPage" class="sapUiNoContentPadding" >
   	<IllustratedMessage
 					illustrationType="sapIllus-NoSearchResults"
-					title="Select Item"
-          description="You need to select item to start packing"/>
+					title="{i18n>SelectProduct}"
+          description="{i18n>SelectProductDescription}"/>
   </Page>
   </core:FragmentDefinition>

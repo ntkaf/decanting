@@ -4,19 +4,35 @@
   	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
   xmlns="sap.m">
-  <Page id="masterProductsPage" title="HU Details with Products" class="sapUiNoContentPadding">
+  <Page id="masterProductsPage" >
     <content>
+    <Toolbar>
+     <core:Icon src="sap-icon://product" class="sapUiTinyMarginEnd"/>
+            <Title text="{i18n>HUDetails}"/>
+            </Toolbar>
     <VBox class="huHeaderBorder sapUiTinyMargin">
-    <Title text="{data>/123/huId}" level="H1" titleStyle="H3" class="sapUiTinyMargin"/>
+    
+    <Title text="{data>/123/huId}" level="H1" titleStyle="H3" class="sapUiSmallMarginBegin sapUiTinyMargin"/>
    
 			<l:VerticalLayout class="sapUiSmallMargin">
+      <HBox>
+      <core:Icon src="sap-icon://map" color="blue" class="sapUiSmallMarginEnd"/>
 				<ObjectStatus title="Location" text="{data>/123/Location}"/>
+        </HBox>
+        
+        <HBox>
+      <core:Icon src="sap-icon://date-time" color="blue" class="sapUiSmallMarginEnd"/>
 				<ObjectStatus title="Scanned" text="17:03:21"/>
+        </HBox>
 			</l:VerticalLayout>
          
             </VBox>
             <Toolbar>
-            <Title text="Products"/>
+            <core:Icon src="sap-icon://lightbulb" class="sapUiTinyMarginEnd"/>
+            <Title text="{i18n>Products}"/>
+            </Toolbar>
+              <Toolbar>
+            <Input placeholder="{i18n>ScanProduct}" />
             </Toolbar>
       <List
         id="listProducts"
@@ -26,17 +42,18 @@
         mode="None"
         itemPress=".onProductItemPress"
         growing="true"
-        growingScrollToLoad="true">
+        growingScrollToLoad="true"
+        showSeparators="All">
 
-        <CustomListItem type="Active">
-        <VBox class="sapUiTinyMargin">
+        <CustomListItem type="Active" class="vcpProductCard">
+        <VBox class="sapUiTinyMargin vcpProductCard__inner">
         <HBox>
-        <core:Icon src="{parts:[{path: 'data>flags'}, {path: 'data>status'}], 
+        <!-- <core:Icon src="{parts:[{path: 'data>flags'}, {path: 'data>status'}], 
                             formatter: '.formatter.statusIcon.bind($controller)'}" size="2rem" color="{parts:[{path: 'data>flags'}, {path: 'data>status'}], 
-                            formatter: '.formatter.statusIconColor.bind($controller)'}" class="sapUiSmallMarginEnd"/>
+                            formatter: '.formatter.statusIconColor.bind($controller)'}" class="sapUiSmallMarginEnd"/> -->
         <Title text="{data>material/description}" wrapping="true" class="sapUiTinyMarginBottom"/>
         </HBox>
-          <HBox justifyContent="SpaceBetween" alignItems="Start" width="90%" class="sapUiTinyMargin sapUiSmallMarginBegin">
+          <HBox justifyContent="SpaceBetween" alignItems="Start" width="90%" >
           
             <VBox width="75%">
               <ObjectStatus title="EAN" text="{data>ean}"/>
@@ -46,8 +63,8 @@
             </VBox>
 
            
-            <VBox width="25%" alignItems="End" alignContent="SpaceBetween" justifyContent="SpaceBetween" height="100%">
-              <ObjectNumber number="{data>quantity/amount}" unit="{data>quantity/uom}" emphasized="true" class="sapMObjectNumberLarge" state="Information"/>
+            <VBox width="25%" alignItems="End" alignContent="End" justifyContent="End" height="100%">
+              <ObjectNumber number="{data>quantity/scanedAmount}/{data>quantity/amount}" emphasized="true" class="sapMObjectNumberLarge" state="Information"/>
               
             </VBox>
           </HBox>

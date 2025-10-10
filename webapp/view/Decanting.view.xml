@@ -5,7 +5,8 @@
 <SplitApp
 		id="SplitAppDemo"
 		initialDetail="detail"
-		initialMaster="master">
+		initialMaster="master"
+		detailNavigate="onDetailNavigate">
 		<detailPages>
 			<core:Fragment fragmentName="com.westernacher.decanting.fragment.NoItemSelectedPage" type="XML"/>
 			<core:Fragment fragmentName="com.westernacher.decanting.fragment.SelectBoxType" type="XML"/>

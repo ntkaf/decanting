@@ -2,11 +2,16 @@
   xmlns:core="sap.ui.core"
   xmlns:f="sap.ui.layout.form"
   xmlns="sap.m">
-  <Page id="masterProductsDetailsPage" title="Products" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToProductsListPress">
-<f:SimpleForm id="SimpleFormDisplay354"
+  <Page id="masterProductsDetailsPage" title="Products" class="sapUiResponsiveContentPadding" showNavButton="true" navButtonPress="onBackToProductsListPress">
+
+<Panel 
+       backgroundDesign="Translucent"
+	   
+       class="vcpCard sapUiSmallMarginBottom">
+	   <Title text="{data>material/description}" wrapping="true"/>
+<f:SimpleForm 
 			editable="false"
-			layout="ResponsiveGridLayout"
-			title="{data>material/description}"
+			layout="ResponsiveGridLayout"		
 			labelSpanXL="3"
 			labelSpanL="3"
 			labelSpanM="3"
@@ -41,13 +46,25 @@
 				
 			</f:content>
 		</f:SimpleForm> 
+		<HBox>
+		<Button text="{i18n>PrintLabels}" press="onPressPrintLabel" class="sapUiSmallMarginEnd"/>
+		<Button text="{i18n>SetExpirationDate}" press="onPressSetExpirationDate" />
+		
+		<!-- <Button text="{i18n>ChangeDestinationBin}" press="onPressChangeDestinationBin" /> -->
+		</HBox>
+<HBox>
+
+		<Button text="{i18n>ChangeDestinationBin}" press="onPressChangeDestinationBin" />
+		<!-- <Button text="{i18n>ChangeDestinationBin}" press="onPressChangeDestinationBin" /> -->
+		</HBox>
+		</Panel>
 		<VBox alignContent="Center" justifyContent="Center" alignItems="Center">
 		
 		</VBox>
-		<footer> 
+		<!-- <footer> 
 		<Toolbar>
-		<Button text="Print Labels" press="onPressPrintLabel" type="Emphasized"/>
+		<Button text="{i18n>PrintLabels}" press="onPressPrintLabel" type="Emphasized"/>
 		</Toolbar>
-		</footer>
+		</footer> -->
   </Page>
 </core:FragmentDefinition>

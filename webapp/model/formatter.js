@@ -34,6 +34,10 @@ sap.ui.define([], () => {
             }
 
             return "#6495ED"
+        },
+        onFormatAvailableAmount: function(iAmount, iScanedAmount){
+            return iAmount-iScanedAmount;
+
         }
     };
 });

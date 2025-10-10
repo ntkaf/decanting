@@ -20,7 +20,7 @@
       </headerContainer>
     </ObjectHeader> -->
     	<ux:ObjectPageHeader id="headerForTest"
-							  objectTitle="TOTE-2354922"							  
+							  objectTitle="TOTE-{data>ToteId}"							  
 							  objectSubtitle="8-Division Tote"
 							  isActionAreaAlwaysVisible="true"
 							  showPlaceholder="true">
@@ -35,8 +35,8 @@
 					</Bar>
 				</ux:navigationBar> -->
 				<ux:actions>
-					<ux:ObjectPageHeaderActionButton press="onCompleteTotePress" text="Complete Tote" tooltip="tree" hideText="false" type="Emphasized"/>
-					<ux:ObjectPageHeaderActionButton press="onChangeTotePress" text="Change Tote" tooltip="action" hideText="false" type="Emphasized"/>
+					<ux:ObjectPageHeaderActionButton press="onCompleteTotePress" text="{i18n>CompleteTote}" tooltip="tree" hideText="false" type="Default"/>
+					<ux:ObjectPageHeaderActionButton press="onChangeTotePress" text="{i18n>ChangeTote}" tooltip="action" hideText="false" type="Default"/>
 				</ux:actions>
 			</ux:ObjectPageHeader>
     <content>
@@ -50,25 +50,28 @@
                      justifyContent="SpaceBetween"
                      wrap="Wrap"
                      class="toteGrid"
-                     items="{data>/totes}">
+                     items="{data>toteDivisions}">
             <f:Card class="toteCell">
               <f:layoutData>                
                 <FlexItemData baseSize="20%" growFactor="1"/>
               </f:layoutData>
               <f:content>
               <VBox alignItems="Center" justifyContent="Center" width="100%">
-              <Title text="{data>name}"/>                
-                <Button type="Transparent" icon="sap-icon://add" width="100%" height="100%" press=".onPressDivision" class="toteCellBtn" app:divisionId="{data>id}"/>
+              <Title text="{data>name}" visible="{= ${data>status} === 'closed'? false: true}"/>                
+                <Button type="Transparent" visible="{= ${data>status} === 'closed'? false: true}"
+                icon="sap-icon://add" width="100%" height="100%" press=".onPressDivision" class="toteCellBtn" app:divisionId="{data>id}"/>
                 <StepInput
                 id="StepInputProductId"
                 width="6rem"
-						value="{data>/selectedItem/quantity/amount}"
+						value="{parts:[{path: 'data>/selectedItem/quantity/amount'},{path: 'data>/selectedItem/quantity/scanedAmount'}], formatter: '.formatter.onFormatAvailableAmount'}"
 						min="1"
 						max="{data>/selectedItem/quantity/amount2}"
             visible="{= ${data>status} === 'selected'? true: false}"/>
-            <Button width="100%" press=".onCloseTote" text="Close" class="toteCellBtn" app:divisionId="{data>id}" visible="{= ${data>status} === 'selected'? true: false}"/>
+            <Button width="100%" press=".onCloseTote" text="Close" 
+            class="toteCellBtn" app:divisionId="{data>id}" visible="{= ${data>status} === 'selected'? true: false}"/>
             <Text text="{data>itemDescription}" visible="{= ${data>status} === 'closed'? true: false}" class="sapUiSmallMargin"/>
-            
+              <ObjectNumber number="{data>scanedAmount}" unit="{data>uom}" emphasized="true" class="sapMObjectNumberLarge" state="Information" visible="{= ${data>status} === 'closed'? true: false}"/>
+              
                 </VBox>
               </f:content>
             </f:Card>

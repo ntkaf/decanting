@@ -36,6 +36,7 @@
         },
         "ean": "4017918170001",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 100,
           "amount2": 100,
           "uom": "EA"
@@ -68,6 +69,7 @@
         },
         "ean": "4021179023456",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 40,
           "amount2": 40,
           "uom": "EA"
@@ -100,6 +102,7 @@
         },
         "ean": "7316571234567",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 200,
           "amount2": 200,
           "uom": "EA"
@@ -132,6 +135,7 @@
         },
         "ean": "3606481234561",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 60,
           "amount2": 60,
           "uom": "EA"
@@ -164,6 +168,7 @@
         },
         "ean": "5056111234567",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 300,
           "amount2": 300,
           "uom": "EA"
@@ -196,6 +201,7 @@
         },
         "ean": "4052561234563",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 30,
           "amount2": 30,
           "uom": "EA"
@@ -228,6 +234,7 @@
         },
         "ean": "4046356234567",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 10,
           "amount2": 10,
           "uom": "EA"
@@ -260,6 +267,7 @@
         },
         "ean": "4025511234564",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 12,
           "amount2": 12,
           "uom": "EA"
@@ -292,6 +300,7 @@
         },
         "ean": "3414971234568",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 40,
           "amount2": 40,
           "uom": "EA"
@@ -324,6 +333,7 @@
         },
         "ean": "5010266234562",
         "quantity": {
+          "scanedAmount": 0,
           "amount": 80,
           "amount2": 80,
           "uom": "EA"
@@ -366,7 +376,7 @@
       "icon": "sap-icon://cart"
     }
   ],
-  "totes": [
+  "TotesDivisions": [
     {
       "id": "1",
       "status": "notselected",
@@ -407,5 +417,6 @@
       "status": "notselected",
       "name": "8"
     }
-  ]
+  ],
+  "Totes":{}
 }

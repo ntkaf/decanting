@@ -88,16 +88,23 @@
       "routes": [
         {
           "name": "RouteDecanting",
-          "pattern": "Decanting/:?query:",
+          "pattern": "Decanting/{wcId},{huId}:?query:",
           "target": [
             "TargetDecanting"
           ]
         },
         {
           "name": "RouteScanHU",
-          "pattern": ":?query:",
+          "pattern": "HU/{wcId}:?query:",
           "target": [
             "TargetScanHU"
+          ]
+        },
+         {
+          "name": "RouteScanWorkCenter",
+          "pattern": ":?query:",
+          "target": [
+            "TargetWorkCenter"
           ]
         }
       ],
@@ -109,6 +116,10 @@
         "TargetScanHU": {
           "id": "ScanHU",
           "name": "ScanHU"
+        },
+        "TargetWorkCenter": {
+          "id": "ScanWorkCenter",
+          "name": "ScanWorkCenter"
         }
       }
     },
