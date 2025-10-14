@@ -1,8 +1,109 @@
 <core:FragmentDefinition
-  xmlns:core="sap.ui.core"
-  xmlns:f="sap.ui.layout.form"
-  xmlns="sap.m">
-  <Page id="detailPackOtherPage" title="Products" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToProductsListPress">
+   xmlns:core="sap.ui.core"
+  xmlns:f="sap.f"
+  xmlns="sap.m"
+  	xmlns:ux="sap.uxap"
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+  <Page id="detailPackOtherPage" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToProductsListPress"
+  title="{i18n>WorkCenter}: {data>/SelectedWorkCenter}">
+  
+
+    <ux:ObjectPageHeader id="headerForTestOne"
+                         objectTitle="TOTE-{data>ToteId}"
+                         objectSubtitle="1-Division Tote"
+                         isActionAreaAlwaysVisible="true"
+                         showPlaceholder="true">
+      <ux:actions>
+        <ux:ObjectPageHeaderActionButton press="onCompleteTotePress" text="{i18n>CompleteTote}" hideText="false" type="Default"/>
+        <ux:ObjectPageHeaderActionButton press="onChangeTotePress" text="{i18n>ChangeTote}" hideText="false" type="Default"/>
+      </ux:actions>
+    </ux:ObjectPageHeader>
+
+    <content>
+
+      <MessageStrip text="{i18n>FirstTimeProductMessage}"
+                    type="Information"
+                    showIcon="true"
+                    showCloseButton="false"
+                    class="sapUiMediumMargin"
+                    visible="{= ${data>/selectedItem/flags/firstReceipt} === true }"/>
+
+      <MessageStrip text="{i18n>RequiresReconditioningMessage}"
+                    type="Information"
+                    showIcon="true"
+                    showCloseButton="false"
+                    class="sapUiMediumMargin"
+                    visible="{= ${data>/selectedItem/flags/requiresReconditioning} === true }"/>
+
+      <VBox alignItems="Center" justifyContent="Center" width="100%" height="100%" class="tote1Container">
+
+
+        <HBox alignItems="Center" justifyContent="Center" class="toteBoardRow" width="100%">
+         
+
+          <f:Card id="tote1BigCell" class="toteCell toteCellBig">
+            <f:layoutData>
+
+              <FlexItemData baseSize="90%" growFactor="1"/>
+            </f:layoutData>
+            <f:content>
+              <VBox alignItems="Center" justifyContent="Center" width="90%">
+
+                <Title text="{data>name}" visible="{= ${data>status} !== 'closed' }"/>
+
+              
+                <Button id="tote1BigAddBtn"
+                        type="Transparent"
+                        icon="sap-icon://add"
+                        width="100%"
+                        height="100%"
+                        press=".onPressDivision"
+                        class="toteCellBtn"
+                        app:divisionId="{data>id}"
+                        visible="{= ${data>status} !== 'closed' }"/>
+
+
+                <StepInput id="StepInputProductIdBig"
+                           width="6rem"
+                           value="{ parts:[
+                                      {path:'data>/selectedItem/quantity/amount'},
+                                      {path:'data>/selectedItem/quantity/scanedAmount'}
+                                   ],
+                                   formatter: '.formatter.onFormatAvailableAmount' }"
+                           min="1"
+                           max="{data>/selectedItem/quantity/amount2}"
+                           visible="{= ${data>status} === 'selected' }"/>
+
+                <Button id="tote1BigCloseBtn"
+                        width="100%"
+                        press=".onCloseTote"
+                        text="{i18n>Close}"
+                        class="toteCellBtn"
+                        app:divisionId="{data>id}"
+                        visible="{= ${data>status} === 'selected' }"/>
+
+        
+                <Text text="{data>itemDescription}"
+                      class="sapUiSmallMargin"
+                      visible="{= ${data>status} === 'closed' }"/>
+
+                <ObjectNumber number="{data>scanedAmount}"
+                              unit="{data>uom}"
+                              emphasized="true"
+                              class="sapMObjectNumberLarge"
+                              state="Information"
+                              visible="{= ${data>status} === 'closed' }"/>
+              </VBox>
+            </f:content>
+          </f:Card>
+
+          
+        </HBox>
+
+      
+      </VBox>
+    </content>
+
 
   </Page>
 </core:FragmentDefinition>

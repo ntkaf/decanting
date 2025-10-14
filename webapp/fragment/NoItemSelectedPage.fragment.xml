@@ -2,7 +2,7 @@
   xmlns:core="sap.ui.core"
   xmlns:f="sap.ui.layout.form"
   xmlns="sap.m">
-  <Page id="detailNoItemSelectedPage" class="sapUiNoContentPadding" >
+  <Page id="detailNoItemSelectedPage" class="sapUiNoContentPadding" title="{i18n>WorkCenter}: {data>/SelectedWorkCenter}">
   	<IllustratedMessage
 					illustrationType="sapIllus-NoSearchResults"
 					title="{i18n>SelectProduct}"

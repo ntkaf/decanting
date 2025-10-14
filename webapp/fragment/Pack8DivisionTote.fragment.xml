@@ -4,7 +4,8 @@
   xmlns="sap.m"
   	xmlns:ux="sap.uxap"
   xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-  <Page id="detailPack8DivisionPage" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToSelectTotePress">
+  <Page id="detailPack8DivisionPage" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToSelectTotePress"   
+  title="{i18n>WorkCenter}: {data>/SelectedWorkCenter}">
     	<!-- <ObjectHeader
 		id="oh1"
 		responsive="true"
@@ -40,6 +41,21 @@
 				</ux:actions>
 			</ux:ObjectPageHeader>
     <content>
+    <MessageStrip
+				text="{i18n>FirstTimeProductMessage}"
+				type="Information"
+				showIcon="true"
+				showCloseButton="false"
+				class="sapUiMediumMargin"
+        visible="{= ${data>/selectedItem/flags/firstReceipt}=== true? true: false}"/>
+           <MessageStrip
+				text="{i18n>RequiresReconditioningMessage}"
+				type="Information"
+				showIcon="true"
+				showCloseButton="false"
+				class="sapUiMediumMargin"
+        visible="{= ${data>/selectedItem/flags/requiresReconditioning}=== true? true: false}"/>
+
       <VBox alignItems="Center" justifyContent="Center" width="100%" height="100%" class="tote8Container">        
         <Text text="A" class="toteLabel toteLabelTop"/>
         <HBox alignItems="Center" justifyContent="Center" class="toteBoardRow">         
@@ -50,7 +66,7 @@
                      justifyContent="SpaceBetween"
                      wrap="Wrap"
                      class="toteGrid"
-                     items="{data>toteDivisions}">
+                     items="{data>toteDivisions}" >
             <f:Card class="toteCell">
               <f:layoutData>                
                 <FlexItemData baseSize="20%" growFactor="1"/>
@@ -67,7 +83,7 @@
 						min="1"
 						max="{data>/selectedItem/quantity/amount2}"
             visible="{= ${data>status} === 'selected'? true: false}"/>
-            <Button width="100%" press=".onCloseTote" text="Close" 
+            <Button width="100%" press=".onCloseTote" text="{i18n>Close}" 
             class="toteCellBtn" app:divisionId="{data>id}" visible="{= ${data>status} === 'selected'? true: false}"/>
             <Text text="{data>itemDescription}" visible="{= ${data>status} === 'closed'? true: false}" class="sapUiSmallMargin"/>
               <ObjectNumber number="{data>scanedAmount}" unit="{data>uom}" emphasized="true" class="sapMObjectNumberLarge" state="Information" visible="{= ${data>status} === 'closed'? true: false}"/>

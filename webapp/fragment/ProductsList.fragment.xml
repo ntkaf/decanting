@@ -23,7 +23,9 @@
         <HBox>
       <core:Icon src="sap-icon://date-time" color="blue" class="sapUiSmallMarginEnd"/>
 				<ObjectStatus title="Scanned" text="17:03:21"/>
+        
         </HBox>
+        <Button text="{i18n>CloseHuDecanting}" class="sapUiSmallMarginTop" press="onCloseHUDecanting"/>
 			</l:VerticalLayout>
          
             </VBox>
@@ -37,7 +39,8 @@
       <List
         id="listProducts"
         items="{
-          path: 'data>/123/items'
+          path: 'data>/123/items',
+          sorter: [{path: 'status', descending: false}]
         }"
         mode="None"
         itemPress=".onProductItemPress"
@@ -45,15 +48,12 @@
         growingScrollToLoad="true"
         showSeparators="All">
 
-        <CustomListItem type="Active" class="vcpProductCard">
+        <CustomListItem type="Active" class="vcpProductCard" highlight="{path:'data>status', formatter:'.formatter.onFormatStatusIndication'}">
         <VBox class="sapUiTinyMargin vcpProductCard__inner">
         <HBox>
-        <!-- <core:Icon src="{parts:[{path: 'data>flags'}, {path: 'data>status'}], 
-                            formatter: '.formatter.statusIcon.bind($controller)'}" size="2rem" color="{parts:[{path: 'data>flags'}, {path: 'data>status'}], 
-                            formatter: '.formatter.statusIconColor.bind($controller)'}" class="sapUiSmallMarginEnd"/> -->
         <Title text="{data>material/description}" wrapping="true" class="sapUiTinyMarginBottom"/>
         </HBox>
-          <HBox justifyContent="SpaceBetween" alignItems="Start" width="90%" >
+          <HBox justifyContent="SpaceBetween" alignItems="End" alignContent="SpaceBetween" width="100%" >
           
             <VBox width="75%">
               <ObjectStatus title="EAN" text="{data>ean}"/>

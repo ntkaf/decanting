@@ -20,8 +20,7 @@
                 width="12rem"
                 id="ScanDestinationHUInput"
                 placeholder="{i18n>ScanOrEnterDestinationHU}"
-                class="sapUiMediumMarginTop"
-                search=".onSearchHU" />
+                class="sapUiMediumMarginTop" />
                 <Button text="{i18n>Next}" press="onPressConfirmScanHUButton" width="12rem"/>
             </VBox>
           </f:content>

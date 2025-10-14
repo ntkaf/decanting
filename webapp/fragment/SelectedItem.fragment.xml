@@ -42,6 +42,12 @@
 				<Text text="{data>weightKg} kg" />
 				<Label text="Number" />
 				<Text text="{data>quantity/amount} {data>quantity/uom}" />
+				<Label text="Expiration Date" />
+				<Text text="{path:'data>expirationDate', formatter:'.formatter.onFormatDate'}" />
+				<Label text="Next dest Bin" />
+				<Text text="{data>destinationBin}" />
+				<Label text="Final dest Bin" />
+				<Text text="{data>destinationBin}" />
 
 				
 			</f:content>

@@ -15,7 +15,8 @@ sap.ui.define([
             var sWcIdEncoded = oArgs.wcId || (oArgs.query && oArgs.query.wcId);
 
             var sWcId = sWcIdEncoded ? decodeURIComponent(sWcIdEncoded) : "";
-            this.getView().getModel("data").setProperty("/SelectedWorkCenter", sWcId)
+            this.getView().getModel("data").setProperty("/SelectedWorkCenter", sWcId);
+            this.byId("ScanHUInput").setValue("");
         },
         onSearchHU: function (oEvent) {
             var sHu = oEvent.getParameter("query") || oEvent.getSource().getValue();

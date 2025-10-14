@@ -1,16 +1,18 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "com/westernacher/decanting/model/formatter"
-], (Controller, formatter) => {
+    "com/westernacher/decanting/model/formatter",
+    "sap/m/MessageBox"
+], (Controller, formatter, MessageBox) => {
     "use strict";
 
     return Controller.extend("com.westernacher.decanting.controller.Decanting", {
         formatter: formatter,
-        onInit() {
+        onInit: function () {
             var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.getRoute("RouteScanHU").attachPatternMatched(this._onDecantingRouteMatched.bind(this), this);
+            oRouter.getRoute("RouteDecanting").attachPatternMatched(this._onDecantingRouteMatched.bind(this), this);
         },
-        _onDecantingRouteMatched: function () {
+
+        _onDecantingRouteMatched: function (oEvent) {
             var oArgs = oEvent.getParameter("arguments") || {};
             var sWcIdEncoded = oArgs.wcId || (oArgs.query && oArgs.query.wcId);
 
@@ -48,6 +50,7 @@ sap.ui.define([
                 return;
             }
             this.onToteSelected(sDestHu);
+            oField.setValue("");
         },
         onToteSelected: function (sKey) {
             let oSplitAppContainer = this.getView().byId('SplitAppDemo');
@@ -55,13 +58,18 @@ sap.ui.define([
             let oTote = {
                 ToteId: sKey
             }
+            if (sKey[0] != "8") {
+                oTote.id = 1;
+                oTote.status = "notselected";
+                oTote.name = 1;
+            }
             let aTotes = oModel.getProperty("/Totes");
             if (!aTotes[sKey]) {
                 aTotes[sKey] = oTote;
-                aTotes[sKey].toteDivisions =  oModel.getProperty("/TotesDivisions");
+                aTotes[sKey].toteDivisions = JSON.parse(JSON.stringify(oModel.getProperty("/TotesDivisions")));
                 oModel.setProperty("/Totes", aTotes);
             }
-oModel.setProperty("/currentTote", sKey);
+            oModel.setProperty("/currentTote", sKey);
             if (sKey[0] == "8") {
                 oSplitAppContainer.toDetail(this.createId("detailPack8DivisionPage"));
             } else {
@@ -78,7 +86,6 @@ oModel.setProperty("/currentTote", sKey);
         },
         onCloseTote: function (oEvent) {
             let oButton = oEvent.getSource();
-            let sKey = oButton.getCustomData()[0].getValue();
             let oBindingContext = oButton.getBindingContext('data');
 
             const sPath = oBindingContext.getPath();
@@ -90,39 +97,41 @@ oModel.setProperty("/currentTote", sKey);
                 return;
             }
             let oSelectedItem = oModel.getProperty("/selectedItem")
-            oModel.setProperty(sPath + "/status", "closed");
-            oModel.setProperty(sPath + "/itemId", oSelectedItem.itemId);
-            oModel.setProperty(sPath + "/itemDescription", oSelectedItem.material.description);
-            oModel.setProperty(sPath + "/scanedAmount", iAmountOfItems);
-            oModel.setProperty(sPath + "/uom", oSelectedItem.quantity.uom);
-            
+            this.setToteDivisionData(sPath, oSelectedItem, iAmountOfItems)
+
+
             oButton.getParent().getParent().removeStyleClass("readyForPackingBackground");
             oButton.getParent().getParent().addStyleClass("packedBackground");
             let iScannedAmount = oSelectedItem.quantity.scanedAmount;
-            let iFinalScanedAmount = iScannedAmount+iAmountOfItems;
-            oSelectedItem.quantity.scanedAmount = iFinalScanedAmount,               
-            oSelectedItem.quantity.amount2 = oSelectedItem.quantity.amount - iFinalScanedAmount;  
-           
+            let iFinalScanedAmount = iScannedAmount + iAmountOfItems;
+            oSelectedItem.quantity.scanedAmount = iFinalScanedAmount,
+                oSelectedItem.quantity.amount2 = oSelectedItem.quantity.amount - iFinalScanedAmount;
+
             oModel.setProperty("/selectedItem/quantity/scanedAmount", iFinalScanedAmount)
             this.assignProductData(oSelectedItem);
             if (iFinalScanedAmount >= oSelectedItem.quantity.amount) {
-                let oSplitAppContainer = this.getView().byId('SplitAppDemo');
-                oSplitAppContainer.toMaster(this.createId("masterProductsPage"));
-                let oListProduct = this.getView().byId("listProducts");
-                let aItems = oListProduct.getItems();
-                for (let i = 0; i < aItems.length; i++) {
-                    let oBindingContext = aItems[i].getBindingContext('data');
-                    if (oBindingContext.getProperty('itemId') == oModel.getProperty("/selectedItem/itemId")) {
-                        aItems[i].addStyleClass("packedBackground")
-                    }
-                }
+                this.manageViewAfterTotePacking(oBindingContext)
+
             }
-            //  let oStepInput = this.getView().byId().
-            //StepInputProductId
+            this.checkIfToteIsFull();
 
         },
-        onPressPrintLabel: function () {
-
+        onPressPrintLabel: async function () {
+            if (!this.oPrintLabelsDialog) {
+                this.oPrintLabelsDialog = await this.loadFragment({
+                    name: "com.westernacher.decanting.fragment.PrintLabels"
+                });
+            }
+            this.oPrintLabelsDialog.open();
+        },
+        onConfirmPrintLabel: function () {
+            MessageBox.information("Labels printing initiated", {
+                styleClass: "sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+            });
+            this.oPrintLabelsDialog.close();
+        },
+        onCancelPrintLabels: function () {
+            this.oPrintLabelsDialog.close();
         },
         onCompleteTotePress: function (oEvent) {
             let oSplitAppContainer = this.getView().byId('SplitAppDemo');
@@ -142,34 +151,171 @@ oModel.setProperty("/currentTote", sKey);
 
             oSplitAppContainer.toDetail(this.createId("detailSelectBoxTypePage"));
         },
+        onChangeTotePress: function (oEvent) {
+            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            oSplitAppContainer.toDetail(this.createId("detailSelectBoxTypePage"));
+        },
         onBackToSelectTotePress: function () {
             let oSplitAppContainer = this.getView().byId('SplitAppDemo');
 
             oSplitAppContainer.toDetail(this.createId("detailSelectBoxTypePage"));
 
         },
-        onDetailNavigate: function(oEvent){
+        onDetailNavigate: function (oEvent) {
             let oPage = oEvent.getParameter('to')
             let sPageId = oPage?.getId();
-            
-            if(sPageId && sPageId.includes("detailPack8DivisionPage")){
-                let oModel = this.getView().getModel('data')
+
+            if (sPageId && (sPageId.includes("detailPack8DivisionPage") || sPageId.includes("detailPackOtherPage"))) {
+                let oModel = this.getView().getModel('data');
                 let sCurrent = oModel.getProperty("/currentTote");
                 let sPath = `/Totes/${sCurrent}`
-                
-                 oPage.bindElement({path:sPath, model:"data"});
+
+                oPage.bindElement({ path: sPath, model: "data" });
+
+                this.prepareViewBasedOnData(sPageId)
             }
 
         },
-        assignProductData: function(oSelectedItem){
+        assignProductData: function (oSelectedItem) {
             let oModel = this.getView().getModel('data');
             let aProducts = oModel.getProperty("/123/items");
-            for (let i = 0; i<aProducts.length; i++){
-                if(oSelectedItem.itemId == aProducts[i].itemId){
+            for (let i = 0; i < aProducts.length; i++) {
+                if (oSelectedItem.itemId == aProducts[i].itemId) {
                     oModel.setProperty(`/123/items/${i}`, oSelectedItem);
                     return;
                 }
             }
+        },
+        checkIfToteIsFull: function () {
+            let oModel = this.getView().getModel('data');
+            let sToteKey = oModel.getProperty("/currentTote");
+            let aTotesDivision = oModel.getProperty(`/Totes/${sToteKey}/toteDivisions`);
+            for (let i = 0; i < aTotesDivision.length; i++) {
+                if (aTotesDivision[i].status !== "closed") {
+                    return;
+                }
+            }
+            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            oModel.setProperty("/currentTote", null);
+            oSplitAppContainer.toDetail(this.createId("detailSelectBoxTypePage"));
+        },
+        setToteDivisionData: function (sPath, oSelectedItem, iAmountOfItems) {
+            let oModel = this.getView().getModel('data');
+            oModel.setProperty(sPath + "/status", "closed");
+            oModel.setProperty(sPath + "/itemId", oSelectedItem.itemId);
+            oModel.setProperty(sPath + "/itemDescription", oSelectedItem.material.description);
+            oModel.setProperty(sPath + "/scanedAmount", iAmountOfItems);
+            oModel.setProperty(sPath + "/uom", oSelectedItem.quantity.uom);
+        },
+        manageViewAfterTotePacking: function (oBindingContext) {
+            let oModel = this.getView().getModel('data');
+            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            oSplitAppContainer.toMaster(this.createId("masterProductsPage"));
+            let oListProduct = this.getView().byId("listProducts");
+            let aItems = oListProduct.getItems();
+            for (let i = 0; i < aItems.length; i++) {
+                let oBindingContext = aItems[i].getBindingContext('data');
+                if (oBindingContext.getProperty('itemId') == oModel.getProperty("/selectedItem/itemId")) {
+                    oModel.setProperty(oBindingContext.getPath() + "/status", 1);
+
+                }
+            }
+            oModel.setProperty("/selectedItem", null)
+        },
+        onPressSetExpirationDate: async function () {
+            if (!this.oSetExpirationDateDialog) {
+                this.oSetExpirationDateDialog = await this.loadFragment({
+                    name: "com.westernacher.decanting.fragment.SetExpirationDate"
+                });
+            }
+            this.oSetExpirationDateDialog.open();
+        },
+        onConfirmSetExpirationDate: function () {
+            MessageBox.information("Expiration Date set Successfully", {
+                styleClass: "sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+            });
+            let oDate = this.getView().byId('expirationDateDatePicker').getDateValue();
+            if (oDate) {
+                this._updateInfoForselectedItem({ expirationDate: oDate });
+            }
+
+            this.oSetExpirationDateDialog.close();
+        },
+        onCancelSetExpirationDate: function () {
+            this.oSetExpirationDateDialog.close();
+        },
+        onPressChangeDestinationBin: async function () {
+            if (!this.oChangeDestinationBinDialog) {
+                this.oChangeDestinationBinDialog = await this.loadFragment({
+                    name: "com.westernacher.decanting.fragment.ChangeDestinationBin"
+                });
+            }
+            this.oChangeDestinationBinDialog.open();
+        },
+        onConfirmChangeDestinationBin: function () {
+            MessageBox.information("Destination Bin changed Successfully", {
+                styleClass: "sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+            });
+            let sDestinationBin = this.getView().byId('ChangeDestinationBinInput').getSelectedItem().getText()
+            if (sDestinationBin) {
+                this._updateInfoForselectedItem({ destinationBin: sDestinationBin + " HU6492-2" });
+            }
+
+            this.oChangeDestinationBinDialog.close();
+        },
+        onCancelChangeDestinationBin: function () {
+            this.oChangeDestinationBinDialog.close();
+        },
+        _updateInfoForselectedItem: function (oItemChange) {
+            let oModel = this.getView().getModel('data');
+            let oSelectedItem = oModel.getProperty("/selectedItem");
+            let aKeys = Object.keys(oItemChange);
+            for (let i = 0; i < aKeys.length; i++) {
+                oSelectedItem[aKeys[i]] = oItemChange[aKeys[i]];
+            }
+            this.assignProductData(oSelectedItem);
+        },
+        prepareViewBasedOnData: function (sPageId) {
+            if (sPageId && sPageId.includes("detailPack8DivisionPage")) {
+                let oGrid = this.getView().byId('tote8Grid')
+                let aItems = oGrid.getItems()
+                for (let i = 0; i < aItems.length; i++) {
+                    let oBindingContext = aItems[i].getBindingContext('data')
+                    if (oBindingContext.getProperty('status') === "closed") {
+                        aItems[i].addStyleClass("packedBackground");
+                    } else {
+                        aItems[i].removeStyleClass("packedBackground");
+                    }
+                }
+
+            } else if (sPageId.includes("detailPackOtherPage")) {
+                let oModel = this.getView().getModel('data');
+                let sCurrent = oModel.getProperty("/currentTote");
+                let sPath = `/Totes/${sCurrent}/status`;
+                if (oModel.getProperty(sPath) === "closed") {
+                    this.getView().byId('tote1BigCell').addStyleClass("packedBackground")
+                } else {
+                    this.getView().byId('tote1BigCell').removeStyleClass("packedBackground")
+                }
+
+            }
+        },
+        onCloseHUDecanting: function () {
+            let oModel = this.getView().getModel('data');
+
+            let aProducts = oModel.getProperty("/123/items");
+            for (let i = 0; i < aProducts.length; i++) {
+                oModel.setProperty(`/123/items/${i}/status`, 0);
+                oModel.setProperty(`/123/items/${i}/quantity/scanedAmount`, 0);
+            }
+            oModel.setProperty("/Totes", {});            
+
+            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            oSplitAppContainer.toDetail(this.createId("detailNoItemSelectedPage"));
+
+            const oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("RouteScanHU", {wcId: oModel.getProperty("/SelectedWorkCenter")});
+
         }
     });
 });

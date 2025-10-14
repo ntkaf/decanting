@@ -29,7 +29,7 @@ sap.ui.define([
             }
 
             const oRouter = this.getOwnerComponent().getRouter();
-          //  oRouter.navTo("RouteDecanting", { huId: encodeURIComponent(sHu) });
+
           oRouter.navTo("RouteScanHU", { wcId: encodeURIComponent(sWC) });
         }
     });

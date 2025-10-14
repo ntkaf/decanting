@@ -24,7 +24,10 @@
     "items": [
       {
         "itemId": "HU-0001-01",
+        "status": 0,
         "poNumber": "45001234",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "Quality Inspection",
         "poItem": "00010",
         "vendor": {
           "id": "VND-IT-0301",
@@ -57,7 +60,10 @@
       },
       {
         "itemId": "HU-0001-02",
+        "status": 0,
         "poNumber": "45001234",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "VAD",
         "poItem": "00020",
         "vendor": {
           "id": "VND-IT-0310",
@@ -90,7 +96,10 @@
       },
       {
         "itemId": "HU-0001-03",
+        "status": 0,
         "poNumber": "45001234",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "Quality Inspection",
         "poItem": "00030",
         "vendor": {
           "id": "VND-IT-0322",
@@ -123,7 +132,10 @@
       },
       {
         "itemId": "HU-0001-04",
+        "status": 0,
         "poNumber": "45005678",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "",
         "poItem": "00010",
         "vendor": {
           "id": "VND-IT-0333",
@@ -156,7 +168,10 @@
       },
       {
         "itemId": "HU-0001-05",
+        "status": 0,
         "poNumber": "45005678",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "",
         "poItem": "00020",
         "vendor": {
           "id": "VND-IT-0340",
@@ -189,7 +204,10 @@
       },
       {
         "itemId": "HU-0001-06",
+        "status": 0,
         "poNumber": "45007890",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "",
         "poItem": "00010",
         "vendor": {
           "id": "VND-IT-0355",
@@ -222,7 +240,10 @@
       },
       {
         "itemId": "HU-0001-07",
+        "status": 0,
         "poNumber": "45007890",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "",
         "poItem": "00020",
         "vendor": {
           "id": "VND-IT-0366",
@@ -255,7 +276,10 @@
       },
       {
         "itemId": "HU-0001-08",
+        "status": 0,
         "poNumber": "45009911",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "",
         "poItem": "00010",
         "vendor": {
           "id": "VND-IT-0377",
@@ -288,7 +312,10 @@
       },
       {
         "itemId": "HU-0001-09",
+        "status": 0,
         "poNumber": "45009911",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "",
         "poItem": "00020",
         "vendor": {
           "id": "VND-IT-0388",
@@ -321,7 +348,10 @@
       },
       {
         "itemId": "HU-0001-10",
+        "status": 0,
         "poNumber": "45012345",
+        "expirationDate": "",
+        "destinationBin": "","nextDestinationBin": "",
         "poItem": "00010",
         "vendor": {
           "id": "VND-IT-0399",
@@ -341,7 +371,7 @@
         "packPerSell": 10,
         "instructions": "Keep upright. 15–25°C. Pack per sell: 10.",
         "flags": {
-          "requiresReconditioning": false,
+          "requiresReconditioning": true,
           "firstReceipt": false
         },
         "weightKg": 6.4,
@@ -418,5 +448,29 @@
       "name": "8"
     }
   ],
-  "Totes":{}
+  "Totes": {},
+  "Printers": [
+    {
+      "key": 1,
+      "text": "HP_WC_001"
+    },
+    {
+      "key": 2,
+      "text": "HP_WC_002"
+    },
+    {
+      "key": 3,
+      "text": "HP_WC_003"
+    }
+  ],
+  "StorageTypes":[{
+      "key": "EX00",
+      "text": "Exotec"
+    },{
+      "key": "HZ00",
+      "text": "Hazardous Substance Storage"
+    },{
+      "key": "HB00",
+      "text": "High Bay"
+    }]
 }

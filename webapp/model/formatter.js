@@ -38,6 +38,21 @@ sap.ui.define([], () => {
         onFormatAvailableAmount: function(iAmount, iScanedAmount){
             return iAmount-iScanedAmount;
 
+        },
+        onFormatStatusIndication: function(sStatus){
+            if(sStatus){
+                return "Indication01";
+            }
+        },
+        onFormatDate: function(oDate){
+            if(!oDate){
+                return "";
+            }
+            let oTimeInstance = sap.ui.core.format.DateFormat.getDateInstance({
+				style: "short"
+			});
+            return oTimeInstance.format(oDate);
         }
+        
     };
 });
