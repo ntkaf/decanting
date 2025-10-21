@@ -1,8 +1,9 @@
 <core:FragmentDefinition
   xmlns:core="sap.ui.core"
   xmlns:ux="sap.uxap"
-  	xmlns:l="sap.ui.layout"
+  xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
+  xmlns:control="com.westernacher.decanting.ui.controls"
   xmlns="sap.m">
   <Page id="masterProductsPage" >
     <content>
@@ -47,8 +48,10 @@
         growing="true"
         growingScrollToLoad="true"
         showSeparators="All">
-
-        <CustomListItem type="Active" class="vcpProductCard" highlight="{path:'data>status', formatter:'.formatter.onFormatStatusIndication'}">
+        <control:CustomListItemExt type="Active" class="vcpProductCard" highlight="{path:'data>status', formatter:'.formatter.onFormatStatusIndication'}"
+          title="{data>material/description}" ean="{data>ean}" po="{data>poNumber}" vendor="{data>vendor/name}" number="{data>quantity/scanedAmount}/{data>quantity/amount}">
+         </control:CustomListItemExt> 
+       <!--<CustomListItem type="Active" class="vcpProductCard" highlight="{path:'data>status', formatter:'.formatter.onFormatStatusIndication'}">
         <VBox class="sapUiTinyMargin vcpProductCard__inner">
         <HBox>
         <Title text="{data>material/description}" wrapping="true" class="sapUiTinyMarginBottom"/>
@@ -70,7 +73,7 @@
           </HBox>
           </VBox>
 
-        </CustomListItem>
+        </CustomListItem>-->
 
       </List>
     </content>
