@@ -75,6 +75,12 @@
                 <FlexItemData baseSize="20%" growFactor="1"/>
               </f:layoutData>
               <f:content>
+                <control:FioriCardsCustomExt class="toteCell" title="{data>name}" titleBtn2="{i18n>Close}" titleVisible="{= ${data>status} === 'closed'? false: true}" btnvisible2="{= ${data>status} === 'selected'? true: false}" pressbtn1="onPressDivision"
+                  pressbtn2="onCloseTote" titleText="{data>itemDescription}" textVisisble="{= ${data>status} === 'closed'? true: false}" objNumber="{data>scanedAmount}" objUnit="{data>uom}" objVisible="{= ${data>status} === 'closed'? true: false}" setInpValue="3"
+                  stepInpVisible="true" stepInpMaxValue="2">
+                  
+               </control:FioriCardsCustomExt> 
+              <!--
               <VBox alignItems="Center" justifyContent="Center" width="100%">
               <Title text="{data>name}" visible="{= ${data>status} === 'closed'? false: true}"/>                
                 <Button type="Transparent" visible="{= ${data>status} === 'closed'? false: true}"
@@ -91,7 +97,7 @@
             <Text text="{data>itemDescription}" visible="{= ${data>status} === 'closed'? true: false}" class="sapUiSmallMargin"/>
               <ObjectNumber number="{data>scanedAmount}" unit="{data>uom}" emphasized="true" class="sapMObjectNumberLarge" state="Information" visible="{= ${data>status} === 'closed'? true: false}"/>
               
-                </VBox>
+                </VBox> -->
               </f:content>
             </f:Card>
           </FlexBox>          

@@ -5,8 +5,9 @@ sap.ui.define([
     "sap/m/Title",
     "sap/m/ObjectNumber",
     "sap/m/FlexItemData",
-    "sap/m/Button"
-], function(FioriCardsCustomExt,VBox,Text,Title,ObjectNumber,FlexItemData,Button) {
+    "sap/m/Button",
+    "sap/m/StepInput"
+], function(FioriCardsCustomExt,VBox,Text,Title,ObjectNumber,FlexItemData,Button,StepInput) {
 	"use strict";
 
 	return FioriCardsCustomExt.extend("com.westernacher.decanting.ui.controls.FioriCardsCustomExt", {
@@ -20,11 +21,12 @@ sap.ui.define([
                 "titleText":{type: "string"},
                 "objNumber":{type: "string"},
                 "objUnit":{type: "string"},
-                "btnvisible2":{
-                    type: "boolean"
-                },
+                "setInpValue":{type: "int"},
+                "stepInpMaxValue":{type: "int"},
+                "btnvisible2":{type: "boolean"},
                 "textVisisble":{ type: "boolean"},
-                "objVisible":{ type: "boolean"}
+                "objVisible":{ type: "boolean"},
+                "stepInpVisible":{ type: "boolean"}
             },
 			aggregations : {
             },
@@ -37,7 +39,7 @@ sap.ui.define([
              FioriCardsCustomExt.prototype.init.apply(this,arguments);
         },
 		onBeforeRendering:function (){
-           console.log(this.getTextVisisble())
+           console.log(this.getSetInpValue())
             this._oFlexItemData = new FlexItemData({
                 baseSize:"20%",
                 growFactor:1
@@ -51,12 +53,20 @@ sap.ui.define([
                 type:"Transparent",
                 icon:"sap-icon://add",
                 width:"100%",
-                id:"StepInputProductId",
                 press:function(){
                     this.firePressbtn1();
                 }.bind(this)
             })
             this._oButtonTop.addStyleClass("toteCellBtn");
+
+            this._oStepInput = new StepInput({
+                width:"6rem",
+                value:this.getSetInpValue(),
+                min:1,
+                max:this.getStepInpMaxValue(),
+                visible:this.getStepInpVisible()
+            });
+
 
              this._oButtonBelow=new Button({
                 visible:this.getTitleVisible(),
@@ -89,7 +99,7 @@ sap.ui.define([
                 alighItems:"Center",
                 justifyContent:"Center",
                 width:"100%",
-                items:[this._oTitle,this._oButtonTop,this._oButtonBelow,this._oText,this._oObjectNumber]
+                items:[this._oTitle,this._oButtonTop,this._oStepInput,this._oButtonBelow,this._oText,this._oObjectNumber]
             });
 
             this.setLayoutData(this._oFlexItemData);
