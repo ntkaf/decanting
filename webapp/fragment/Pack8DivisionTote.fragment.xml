@@ -81,7 +81,7 @@
                   stepInpVisible="{= ${data>status} === 'selected'? true: false}" stepInpMaxValue="{data>/selectedItem/quantity/amount2}">
                   
                </control:FioriCardsCustomExt> 
-            <!--
+          <!--
               <VBox alignItems="Center" justifyContent="Center" width="100%">
               <Title text="{data>name}" visible="{= ${data>status} === 'closed'? false: true}"/>                
                 <Button type="Transparent" visible="{= ${data>status} === 'closed'? false: true}"
@@ -98,8 +98,8 @@
             <Text text="{data>itemDescription}" visible="{= ${data>status} === 'closed'? true: false}" class="sapUiSmallMargin"/>
               <ObjectNumber number="{data>scanedAmount}" unit="{data>uom}" emphasized="true" class="sapMObjectNumberLarge" state="Information" visible="{= ${data>status} === 'closed'? true: false}"/>
               
-                </VBox>
-                -->
+                </VBox> -->
+                
               </f:content>
             </f:Card>
           </FlexBox>          

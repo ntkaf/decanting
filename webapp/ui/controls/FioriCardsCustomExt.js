@@ -30,7 +30,14 @@ sap.ui.define([
             },
             events : {
 				pressbtn1 : {enablePreventDefault : true},
-                pressbtn2 : {enablePreventDefault : true}
+                pressbtn2 : {
+                    enablePreventDefault : true,
+                    parameters: {
+						"btnSource": {
+							type: "object"
+						},
+					}
+                }
 			}
         },
         init:function(){
@@ -73,7 +80,9 @@ sap.ui.define([
                 width:"100%",
                 text:this.getTitleBtn2(),
                 press:function(oEvent){
-                    this.firePressbtn2(oEvent);
+                    this.firePressbtn2({
+                        btnSource:this._oButtonBelow
+                    });
                 }.bind(this)
             });
             this._oButtonBelow.addStyleClass("toteCellBtn");

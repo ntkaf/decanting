@@ -80,6 +80,7 @@ sap.ui.define([
             }
         },
         onPressDivision: function (oEvent) {
+            debugger
             //   let sKey = oEvent.getSource().getCustomData()[0].getValue();
             let oBindingContext = oEvent.getSource().getBindingContext('data');
             const sPath = oBindingContext.getPath();
@@ -87,7 +88,7 @@ sap.ui.define([
             oModel.setProperty(sPath + "/status", "selected");
             oEvent.getSource().getParent().getParent().addStyleClass("readyForPackingBackground");
         },
-        onCloseTote: function (oEvent) {
+        onCloseTote2: function (oEvent) {
             let oButton = oEvent.getSource();
             let oBindingContext = oButton.getBindingContext('data');
 
@@ -119,6 +120,39 @@ sap.ui.define([
             this.checkIfToteIsFull();
 
         },
+        onCloseTote: function (oEvent) {
+            let oButton = oEvent.getParameter("btnSource");
+            let oBindingContext = oButton.getBindingContext('data');
+
+            const sPath = oBindingContext.getPath();
+            let oModel = this.getView().getModel('data');
+
+            let iAmountOfItems = oButton.getParent().getItems()[2].getValue();
+
+            if (iAmountOfItems == 0) {
+                return;
+            }
+            let oSelectedItem = oModel.getProperty("/selectedItem")
+            this.setToteDivisionData(sPath, oSelectedItem, iAmountOfItems)
+
+
+            oButton.getParent().getParent().removeStyleClass("readyForPackingBackground");
+            oButton.getParent().getParent().addStyleClass("packedBackground");
+            let iScannedAmount = oSelectedItem.quantity.scanedAmount;
+            let iFinalScanedAmount = iScannedAmount + iAmountOfItems;
+            oSelectedItem.quantity.scanedAmount = iFinalScanedAmount,
+                oSelectedItem.quantity.amount2 = oSelectedItem.quantity.amount - iFinalScanedAmount;
+
+            oModel.setProperty("/selectedItem/quantity/scanedAmount", iFinalScanedAmount)
+            this.assignProductData(oSelectedItem);
+            if (iFinalScanedAmount >= oSelectedItem.quantity.amount) {
+                this.manageViewAfterTotePacking(oBindingContext)
+
+            }
+            this.checkIfToteIsFull();
+
+        },
+
         onPressPrintLabel: async function () {
             if (!this.oPrintLabelsDialog) {
                 this.oPrintLabelsDialog = await this.loadFragment({
