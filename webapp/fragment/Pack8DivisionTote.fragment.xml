@@ -80,8 +80,8 @@
                   pressbtn2="onCloseTote" titleText="{data>itemDescription}" textVisisble="{= ${data>status} === 'closed'? true: false}" objNumber="{data>scanedAmount}" objUnit="{data>uom}" objVisible="{= ${data>status} === 'closed'? true: false}" setInpValue="{parts:[{path: 'data>/selectedItem/quantity/amount'},{path: 'data>/selectedItem/quantity/scanedAmount'}], formatter: '.formatter.onFormatAvailableAmount'}"
                   stepInpVisible="{= ${data>status} === 'selected'? true: false}" stepInpMaxValue="{data>/selectedItem/quantity/amount2}">
                   
-               </control:FioriCardsCustomExt>  
-              <!---
+               </control:FioriCardsCustomExt> 
+            <!--
               <VBox alignItems="Center" justifyContent="Center" width="100%">
               <Title text="{data>name}" visible="{= ${data>status} === 'closed'? false: true}"/>                
                 <Button type="Transparent" visible="{= ${data>status} === 'closed'? false: true}"

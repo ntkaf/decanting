@@ -14,9 +14,7 @@ sap.ui.define([
         metadata: {
 			 properties : {
                 "title": {type: "string"},
-                "titleVisible": {
-					type: "boolean"
-				},
+                "titleVisible": {type: "boolean"},
                 "titleBtn2": {type: "string"},
                 "titleText":{type: "string"},
                 "objNumber":{type: "string"},
@@ -99,7 +97,7 @@ sap.ui.define([
                 alignItems:"Center",
                 justifyContent:"Center",
                 width:"100%",
-                items:[this._oTitle,this._oButtonTop,this._oStepInput,this._oButtonBelow]
+                items:[this._oTitle,this._oButtonTop,this._oStepInput,this._oButtonBelow,this._oText,this._oObjectNumber]
             });
 
             this.setLayoutData(this._oFlexItemData);
