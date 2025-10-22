@@ -80,7 +80,6 @@ sap.ui.define([
             }
         },
         onPressDivision: function (oEvent) {
-            debugger
             //   let sKey = oEvent.getSource().getCustomData()[0].getValue();
             let oBindingContext = oEvent.getSource().getBindingContext('data');
             const sPath = oBindingContext.getPath();
