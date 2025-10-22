@@ -39,7 +39,7 @@ sap.ui.define([
              FioriCardsCustomExt.prototype.init.apply(this,arguments);
         },
 		onBeforeRendering:function (){
-           console.log(this.getSetInpValue())
+            console.log(this.getTitleVisible())
             this._oFlexItemData = new FlexItemData({
                 baseSize:"20%",
                 growFactor:1
@@ -56,7 +56,7 @@ sap.ui.define([
                 press:function(){
                     this.firePressbtn1();
                 }.bind(this)
-            })
+            });
             this._oButtonTop.addStyleClass("toteCellBtn");
 
             this._oStepInput = new StepInput({
@@ -69,13 +69,13 @@ sap.ui.define([
 
 
              this._oButtonBelow=new Button({
-                visible:this.getTitleVisible(),
+                visible:this.getBtnvisible2(),
                 type:"Transparent",
                 icon:"sap-icon://add",
                 width:"100%",
                 text:this.getTitleBtn2(),
-                press:function(){
-                    this.firePressbtn2();
+                press:function(oEvent){
+                    this.firePressbtn2(oEvent);
                 }.bind(this)
             });
             this._oButtonBelow.addStyleClass("toteCellBtn");
@@ -96,10 +96,10 @@ sap.ui.define([
             this._oObjectNumber.addStyleClass("sapMObjectNumberLarge");
 
             this._oVbox = new VBox({
-                alighItems:"Center",
+                alignItems:"Center",
                 justifyContent:"Center",
                 width:"100%",
-                items:[this._oTitle,this._oButtonTop,this._oStepInput,this._oButtonBelow,this._oText,this._oObjectNumber]
+                items:[this._oTitle,this._oButtonTop,this._oStepInput,this._oButtonBelow]
             });
 
             this.setLayoutData(this._oFlexItemData);
