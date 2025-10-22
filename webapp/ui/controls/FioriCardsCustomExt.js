@@ -44,7 +44,8 @@ sap.ui.define([
              FioriCardsCustomExt.prototype.init.apply(this,arguments);
         },
 		onBeforeRendering:function (){
-            console.log(this.getBtnvisible2(),this.getStepInpVisible())
+            FioriCardsCustomExt.prototype.onBeforeRendering.apply(this,arguments);
+
             this._oFlexItemData = new FlexItemData({
                 baseSize:"20%",
                 growFactor:1
