@@ -87,7 +87,7 @@ sap.ui.define([
             oModel.setProperty(sPath + "/status", "selected");
             oEvent.getSource().getParent().getParent().addStyleClass("readyForPackingBackground");
         },
-        onCloseTote2: function (oEvent) {
+        onCloseTote: function (oEvent) {
             let oButton = oEvent.getSource();
             let oBindingContext = oButton.getBindingContext('data');
 
@@ -119,7 +119,7 @@ sap.ui.define([
             this.checkIfToteIsFull();
 
         },
-        onCloseTote: function (oEvent) {
+        onCloseToteV2: function (oEvent) {
             let oButton = oEvent.getParameter("btnSource");
             let oBindingContext = oButton.getBindingContext('data');
 
