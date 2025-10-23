@@ -11,9 +11,6 @@ sap.ui.define([
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.getRoute("RouteDecanting").attachPatternMatched(this._onDecantingRouteMatched.bind(this), this);
         },
-        onPress1:function(){
-            console.log("manik")
-        },
 
         _onDecantingRouteMatched: function (oEvent) {
             var oArgs = oEvent.getParameter("arguments") || {};
