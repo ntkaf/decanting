@@ -47,10 +47,9 @@
 /* Center board and give it breathing room */
 .tote8Container { min-height: calc(100vh - 8rem); gap: 12px; }
 
-/* Board itself */
 .toteGrid {
   gap: 16px;
-  padding: 16px;
+  padding-top: 2rem !important;
   width: min(920px, 92vw);
   background: #fff;
   border-radius: 16px;

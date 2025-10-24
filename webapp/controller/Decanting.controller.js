@@ -82,7 +82,6 @@ sap.ui.define([
             const sPath = oBindingContext.getPath();
             let oModel = this.getView().getModel('data');
             oModel.setProperty(sPath + "/status", "selected");
-            oEvent.getSource().getParent().getParent().addStyleClass("readyForPackingBackground");
         },
         onCloseTote: function (oEvent) {
             let oButton = oEvent.getSource();
@@ -100,8 +99,8 @@ sap.ui.define([
             this.setToteDivisionData(sPath, oSelectedItem, iAmountOfItems)
 
 
-            oButton.getParent().getParent().removeStyleClass("readyForPackingBackground");
-            oButton.getParent().getParent().addStyleClass("packedBackground");
+            //oButton.getParent().getParent().removeStyleClass("readyForPackingBackground");
+           // oButton.getParent().getParent().addStyleClass("packedBackground");
             let iScannedAmount = oSelectedItem.quantity.scanedAmount;
             let iFinalScanedAmount = iScannedAmount + iAmountOfItems;
             oSelectedItem.quantity.scanedAmount = iFinalScanedAmount,

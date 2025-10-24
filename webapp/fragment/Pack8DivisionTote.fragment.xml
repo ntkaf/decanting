@@ -43,7 +43,7 @@
 			</ux:ObjectPageHeader>
     <content>
     <MessageStrip
-				text="121212{i18n>FirstTimeProductMessage}123"
+				text="{i18n>FirstTimeProductMessage}"
 				type="Information"
 				showIcon="true"
 				showCloseButton="false"
@@ -56,57 +56,19 @@
 				showCloseButton="false"
 				class="sapUiMediumMargin"
         visible="{= ${data>/selectedItem/flags/requiresReconditioning}=== true? true: false}"/>
-    
-      <VBox alignItems="Center" justifyContent="Center" width="100%" height="100%" class="tote8Container">        
-       
-        <Text text="A" class="toteLabel toteLabelTop"/>
-        <HBox alignItems="Center" justifyContent="Center" class="toteBoardRow">         
-          <Text text="B" class="toteLabel toteLabelLeft"/>
-          
-          <FlexBox id="tote8Grid"
-                     alignItems="Stretch"
-                     justifyContent="SpaceBetween"
-                     wrap="Wrap"
-                     class="toteGrid"
-                     items="{data>toteDivisions}" >
-         
-            <f:Card class="toteCell">
-              <f:layoutData>                
-                <FlexItemData baseSize="20%" growFactor="1"/>
-              </f:layoutData>
-              <f:content>
-                
-                <control:FioriCardsCustomExt class="toteCell" title="{data>name}" titleBtn2="{i18n>Close}" titleVisible="{= ${data>status} === 'closed'? false: true}" btnvisible2="{= ${data>status} === 'selected'? true: false}" pressbtn1="onPressDivision"
-                  pressbtn2="onCloseToteV2" titleText="{data>itemDescription}" textVisisble="{= ${data>status} === 'closed'? true: false}" objNumber="{data>scanedAmount}" objUnit="{data>uom}" objVisible="{= ${data>status} === 'closed'? true: false}" setInpValue="{parts:[{path: 'data>/selectedItem/quantity/amount'},{path: 'data>/selectedItem/quantity/scanedAmount'}], formatter: '.formatter.onFormatAvailableAmount'}"
-                  stepInpVisible="{= ${data>status} === 'selected'? true: false}" stepInpMaxValue="{data>/selectedItem/quantity/amount2}">
+
+
+      <control:Tote id="tote8Grid" labelTop="A" labelBottom="D" labelLeft="B" labelRight="C" divisions="{data>toteDivisions}">
+          <control:divisions>
+            <control:ToteDivision title="{data>name}" titleCloseButton="{i18n>Close}" 
+                  close="onCloseToteV2" productDescription="{data>itemDescription}" packedQuantity="{data>scanedAmount}" unit="{data>uom}" 
+                  quantity="{parts:[{path: 'data>/selectedItem/quantity/amount'},{path: 'data>/selectedItem/quantity/scanedAmount'}], formatter: '.formatter.onFormatAvailableAmount'}"
+                  quantityMaxValue="{data>/selectedItem/quantity/amount2}" state="{data>status}">
                   
-               </control:FioriCardsCustomExt> 
-          <!--
-              <VBox alignItems="Center" justifyContent="Center" width="100%">
-              <Title text="{data>name}" visible="{= ${data>status} === 'closed'? false: true}"/>                
-                <Button type="Transparent" visible="{= ${data>status} === 'closed'? false: true}"
-                icon="sap-icon://add" width="100%" height="100%" press=".onPressDivision" class="toteCellBtn" app:divisionId="{data>id}"/>
-                <StepInput
-                id="StepInputProductId"
-                width="6rem"
-						value="{parts:[{path: 'data>/selectedItem/quantity/amount'},{path: 'data>/selectedItem/quantity/scanedAmount'}], formatter: '.formatter.onFormatAvailableAmount'}"
-						min="1"
-						max="{data>/selectedItem/quantity/amount2}"
-            visible="{= ${data>status} === 'selected'? true: false}"/>
-            <Button width="100%" press=".onCloseTote" text="{i18n>Close}" 
-            class="toteCellBtn" app:divisionId="{data>id}" visible="{= ${data>status} === 'selected'? true: false}"/>
-            <Text text="{data>itemDescription}" visible="{= ${data>status} === 'closed'? true: false}" class="sapUiSmallMargin"/>
-              <ObjectNumber number="{data>scanedAmount}" unit="{data>uom}" emphasized="true" class="sapMObjectNumberLarge" state="Information" visible="{= ${data>status} === 'closed'? true: false}"/>
-              
-                </VBox> -->
-                
-              </f:content>
-            </f:Card>
-          </FlexBox>          
-          <Text text="D" class="toteLabel toteLabelRight"/>
-        </HBox>        
-        <Text text="C" class="toteLabel toteLabelBottom"/>
-      </VBox>
+               </control:ToteDivision> 
+               </control:divisions>
+      </control:Tote>
+     
     </content>
   </Page>
   </core:FragmentDefinition>
