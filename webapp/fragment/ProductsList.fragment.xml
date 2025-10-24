@@ -11,6 +11,7 @@
      <core:Icon src="sap-icon://product" class="sapUiTinyMarginEnd"/>
             <Title text="{i18n>HUDetails}"/>
             </Toolbar>
+    
     <VBox class="huHeaderBorder sapUiTinyMargin">
     
     <Title text="{data>/123/huId}" level="H1" titleStyle="H3" class="sapUiSmallMarginBegin sapUiTinyMargin"/>

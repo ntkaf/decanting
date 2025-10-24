@@ -22,8 +22,12 @@ sap.ui.define([
                 
             },
         },
+        init:function(){
+             CustomListItem.prototype.init.apply(this,arguments);
+        },
 		onBeforeRendering:function (){
-            CustomListItem.prototype.init.apply(this,arguments);
+           CustomListItem.prototype.onBeforeRendering.apply(this,arguments);
+           
             const oResourceBundle = this.getModel("i18n").getResourceBundle();
 
             this._oTopHBox = new HBox({
