@@ -20,8 +20,8 @@ sap.ui.define([
             aggregations: {
                 divisions: { type: "com.westernacher.decanting.ui.controls.ToteDivision", multiple: true },
                 _top: { type: "sap.m.Text", visibility: "hidden", multiple: false },
-                _bottom: { type: "sap.m.Text", visibility: "hidden" , multiple: false},
-                _middle: { type: "sap.m.HBox", visibility: "hidden" , multiple: false} 
+                _bottom: { type: "sap.m.Text", visibility: "hidden", multiple: false },
+                _middle: { type: "sap.m.HBox", visibility: "hidden", multiple: false }
             }
 
         },
@@ -29,8 +29,8 @@ sap.ui.define([
         init: function () {
             sap.m.VBox.prototype.init.apply(this, arguments);
             this.addStyleClass("tote8Container");
-          //  this.addStyleClass("toteGrid");
-            this.setAlignItems("Center") 
+            //  this.addStyleClass("toteGrid");
+            this.setAlignItems("Center")
             this.setWidth("100%")
             this.setJustifyContent("Center")
             this.setAggregation("_top", new Text().addStyleClass("toteLabel toteLabelTop"));
@@ -54,34 +54,31 @@ sap.ui.define([
             return this;
         },
         setLabelBottom: function (sValue) {
-             this.setProperty("labelBottom", sValue, true); 
-             this.getAggregation("_bottom").setText(sValue); 
-             return this; 
-            },
-        setLabelLeft: function (sValue) {
-             this.setProperty("labelLeft", sValue, true); 
-             this._oLeft.setText(sValue); 
-             return this; 
-            },
-        setLabelRight: function (sValue) { 
-            this.setProperty("labelRight", sValue, true); 
-            this._oRight.setText(sValue); 
-            return this; 
+            this.setProperty("labelBottom", sValue, true);
+            this.getAggregation("_bottom").setText(sValue);
+            return this;
         },
-
+        setLabelLeft: function (sValue) {
+            this.setProperty("labelLeft", sValue, true);
+            this._oLeft.setText(sValue);
+            return this;
+        },
+        setLabelRight: function (sValue) {
+            this.setProperty("labelRight", sValue, true);
+            this._oRight.setText(sValue);
+            return this;
+        },
         onBeforeRendering: function () {
             sap.m.VBox.prototype.onBeforeRendering.apply(this, arguments);
-
+            this._oGrid.setDefaultSpan(this._getSpan());
+            this._oGrid.setDefaultIndent(this._getIndent());
 
             this._oGrid.removeAllContent();
-            this.getDivisions().forEach(oDiv => {
-                if (!(oDiv.getLayoutData() instanceof GridData)) {
-                    oDiv.setLayoutData(new GridData({ span: "L3 M6 S12" }));
-                }
-                oDiv.addStyleClass("toteCell");
-                this._oGrid.addContent(oDiv);
-            });
 
+            this.getDivisions().forEach(function (oDiv) {
+                oDiv.destroyLayoutData();
+                this._oGrid.addContent(oDiv);
+            }.bind(this));
 
             this._oLeft.setText(this.getLabelLeft());
             this._oRight.setText(this.getLabelRight());
@@ -93,6 +90,35 @@ sap.ui.define([
             this.addItem(this.getAggregation("_middle"));
             this.addItem(this.getAggregation("_bottom"));
         },
+        _getSpan: function () {
+            var iCount = this.getDivisions().length;
+            let sSpan = "";
+            if (iCount === 1) {
+                sSpan = "L8 M10 S12";
+            } else if (iCount === 2) {
+                sSpan = "L6 M6 S12";
+            } else if (iCount === 3) {
+                sSpan = "L4 M6 S12";
+            } else {
+                sSpan = "L3 M6 S12";
+            }
+            return sSpan;
+        },
+        _getIndent: function () {
+            var iCount = this.getDivisions().length;
+            let sIndent = "";
+            if (iCount === 1) {
+                sIndent = "L2 M1 S0";
+            } else if (iCount === 2) {
+                sIndent = "L0 M0 S0";
+            } else if (iCount === 3) {
+                sIndent = "L0 M0 S0";
+            } else {
+                sIndent = "L0 M0 S0";
+            }
+            return sIndent;
+        },
+
 
 
         renderer: VBoxRenderer
