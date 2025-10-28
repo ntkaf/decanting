@@ -6,6 +6,11 @@ sap.ui.define([
     "use strict";
 
     return BaseController.extend("com.westernacher.decanting.controller.ScanWorkCenter", {
+        onInit:function(){
+            this._oComponent=this.getOwnerComponent();
+            this._oRouter= this.getOwnerComponent().getRouter();
+            this._oView = this.getView();
+        },
         /** Handle Enter/scan in the SearchField */
         onSearchHU: function (oEvent) {
             // Read HU from the SearchField (works for Enter or scan suffix)

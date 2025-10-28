@@ -6,16 +6,17 @@ sap.ui.define([
 
     return BaseController.extend("com.westernacher.decanting.controller.ScanHU", {
         onInit: function () {
-
-            var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.getRoute("RouteScanHU").attachPatternMatched(this._onScanHURouteMatched.bind(this), this);
+            this._oComponent=this.getOwnerComponent();
+            this._oRouter= this.getOwnerComponent().getRouter();
+            this._oView = this.getView();
+            this._oRouter.getRoute("RouteScanHU").attachPatternMatched(this._onScanHURouteMatched.bind(this), this);
         },
         _onScanHURouteMatched: function (oEvent) {
             var oArgs = oEvent.getParameter("arguments") || {};
             var sWcIdEncoded = oArgs.wcId || (oArgs.query && oArgs.query.wcId);
 
             var sWcId = sWcIdEncoded ? decodeURIComponent(sWcIdEncoded) : "";
-            this.getView().getModel("data").setProperty("/SelectedWorkCenter", sWcId);
+            this._oView.getModel("data").setProperty("/SelectedWorkCenter", sWcId);
             this.byId("ScanHUInput").setValue("");
         },
         onSearchHU: function (oEvent) {
@@ -38,7 +39,7 @@ sap.ui.define([
             const oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("RouteDecanting", {
                 huId: encodeURIComponent(sHu),
-                wcId: this.getView().getModel("data").getProperty("/SelectedWorkCenter")
+                wcId: this._oView.getModel("data").getProperty("/SelectedWorkCenter")
             });
         }
     });

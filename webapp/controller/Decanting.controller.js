@@ -8,8 +8,10 @@ sap.ui.define([
     return BaseController.extend("com.westernacher.decanting.controller.Decanting", {
         formatter: formatter,
         onInit: function () {
-            var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.getRoute("RouteDecanting").attachPatternMatched(this._onDecantingRouteMatched.bind(this), this);
+            this._oComponent=this.getOwnerComponent();
+            this._oRouter= this.getOwnerComponent().getRouter();
+            this._oView = this.getView();
+            this._oRouter.getRoute("RouteDecanting").attachPatternMatched(this._onDecantingRouteMatched.bind(this), this);
         },
 
         _onDecantingRouteMatched: function (oEvent) {
@@ -17,14 +19,14 @@ sap.ui.define([
             var sWcIdEncoded = oArgs.wcId || (oArgs.query && oArgs.query.wcId);
 
             var sWcId = sWcIdEncoded ? decodeURIComponent(sWcIdEncoded) : "";
-            this.getView().getModel("data").setProperty("/SelectedWorkCenter", sWcId)
+            this._oView.getModel("data").setProperty("/SelectedWorkCenter", sWcId)
         },
         onProductItemPress: function (oEvent) {
-            let oModel = this.getView().getModel('data');
-            let oSplitAppContainer = this.getView().byId('SplitAppDemo')
+            let oModel = this._oView.getModel('data');
+            let oSplitAppContainer = this._oView.byId('SplitAppDemo')
             oSplitAppContainer.toMaster(this.createId("masterProductsDetailsPage"));
             let oBindingContext = oEvent.getParameter('listItem').getBindingContext('data')
-            this.getView().byId('masterProductsDetailsPage').setBindingContext(oBindingContext, "data");
+            this._oView.byId('masterProductsDetailsPage').setBindingContext(oBindingContext, "data");
             const sCurrentAppId = oSplitAppContainer.getCurrentDetailPage().getId();
             if (sCurrentAppId == this.createId("detailNoItemSelectedPage")) {
                 oSplitAppContainer.toDetail(this.createId("detailSelectBoxTypePage"));
@@ -33,7 +35,7 @@ sap.ui.define([
             oModel.setProperty("/selectedItem", oBindingContext.getObject())
         },
         onBackToProductsListPress: function () {
-            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            let oSplitAppContainer = this._oView.byId('SplitAppDemo');
             const sCurrentAppId = oSplitAppContainer.getCurrentDetailPage().getId();
             if (sCurrentAppId !== this.createId("Pack8DivisionTote") && sCurrentAppId !== this.createId("DetailPackOtherPage")) {
                 oSplitAppContainer.toMaster(this.createId("masterProductsPage"));
@@ -54,8 +56,8 @@ sap.ui.define([
             oField.setValue("");
         },
         onToteSelected: function (sKey) {
-            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
-            let oModel = this.getView().getModel('data');
+            let oSplitAppContainer = this._oView.byId('SplitAppDemo');
+            let oModel = this._oView.getModel('data');
             let oTote = {
                 ToteId: sKey
             }
@@ -81,7 +83,7 @@ sap.ui.define([
             //   let sKey = oEvent.getSource().getCustomData()[0].getValue();
             let oBindingContext = oEvent.getSource().getBindingContext('data');
             const sPath = oBindingContext.getPath();
-            let oModel = this.getView().getModel('data');
+            let oModel = this._oView.getModel('data');
             oModel.setProperty(sPath + "/status", "selected");
         },
         onCloseTote: function (oEvent) {
@@ -89,7 +91,7 @@ sap.ui.define([
             let oBindingContext = oButton.getBindingContext('data');
 
             const sPath = oBindingContext.getPath();
-            let oModel = this.getView().getModel('data');
+            let oModel = this._oView.getModel('data');
 
             let iAmountOfItems = oButton.getParent().getItems()[2].getValue();
 
@@ -121,7 +123,7 @@ sap.ui.define([
             let oBindingContext = oButton.getBindingContext('data');
 
             const sPath = oBindingContext.getPath();
-            let oModel = this.getView().getModel('data');
+            let oModel = this._oView.getModel('data');
 
             let iAmountOfItems = oButton.getParent().getItems()[2].getValue();
 
@@ -167,12 +169,12 @@ sap.ui.define([
             this.oPrintLabelsDialog.close();
         },
         onCompleteTotePress: function (oEvent) {
-            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            let oSplitAppContainer = this._oView.byId('SplitAppDemo');
             const sCurrentAppId = oSplitAppContainer.getCurrentDetailPage().getId();
             sap.ui.getCore().byId(sCurrentAppId).rerender();
-            let oModel = this.getView().getModel('data');
+            let oModel = this._oView.getModel('data');
             let aTotesDivisions = oModel.getProperty('/TotesDivisions');
-            let aTotesDivisionsList = this.getView().byId('tote8Grid')?.getItems();
+            let aTotesDivisionsList = this._oView.byId('tote8Grid')?.getItems();
             if (!aTotesDivisionsList) {
                 return;
             }
@@ -185,11 +187,11 @@ sap.ui.define([
             oSplitAppContainer.toDetail(this.createId("detailSelectBoxTypePage"));
         },
         onChangeTotePress: function (oEvent) {
-            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            let oSplitAppContainer = this._oView.byId('SplitAppDemo');
             oSplitAppContainer.toDetail(this.createId("detailSelectBoxTypePage"));
         },
         onBackToSelectTotePress: function () {
-            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            let oSplitAppContainer = this._oView.byId('SplitAppDemo');
 
             oSplitAppContainer.toDetail(this.createId("detailSelectBoxTypePage"));
 
@@ -199,7 +201,7 @@ sap.ui.define([
             let sPageId = oPage?.getId();
 
             if (sPageId && (sPageId.includes("detailPack8DivisionPage") || sPageId.includes("detailPackOtherPage"))) {
-                let oModel = this.getView().getModel('data');
+                let oModel = this._oView.getModel('data');
                 let sCurrent = oModel.getProperty("/currentTote");
                 let sPath = `/Totes/${sCurrent}`
 
@@ -210,7 +212,7 @@ sap.ui.define([
 
         },
         assignProductData: function (oSelectedItem) {
-            let oModel = this.getView().getModel('data');
+            let oModel = this._oView.getModel('data');
             let aProducts = oModel.getProperty("/123/items");
             for (let i = 0; i < aProducts.length; i++) {
                 if (oSelectedItem.itemId == aProducts[i].itemId) {
@@ -220,7 +222,7 @@ sap.ui.define([
             }
         },
         checkIfToteIsFull: function () {
-            let oModel = this.getView().getModel('data');
+            let oModel = this._oView.getModel('data');
             let sToteKey = oModel.getProperty("/currentTote");
             let aTotesDivision = oModel.getProperty(`/Totes/${sToteKey}/toteDivisions`);
             for (let i = 0; i < aTotesDivision.length; i++) {
@@ -228,12 +230,12 @@ sap.ui.define([
                     return;
                 }
             }
-            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            let oSplitAppContainer = this._oView.byId('SplitAppDemo');
             oModel.setProperty("/currentTote", null);
             oSplitAppContainer.toDetail(this.createId("detailSelectBoxTypePage"));
         },
         setToteDivisionData: function (sPath, oSelectedItem, iAmountOfItems) {
-            let oModel = this.getView().getModel('data');
+            let oModel = this._oView.getModel('data');
             oModel.setProperty(sPath + "/status", "closed");
             oModel.setProperty(sPath + "/itemId", oSelectedItem.itemId);
             oModel.setProperty(sPath + "/itemDescription", oSelectedItem.material.description);
@@ -241,10 +243,10 @@ sap.ui.define([
             oModel.setProperty(sPath + "/uom", oSelectedItem.quantity.uom);
         },
         manageViewAfterTotePacking: function (oBindingContext) {
-            let oModel = this.getView().getModel('data');
-            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            let oModel = this._oView.getModel('data');
+            let oSplitAppContainer = this._oView.byId('SplitAppDemo');
             oSplitAppContainer.toMaster(this.createId("masterProductsPage"));
-            let oListProduct = this.getView().byId("listProducts");
+            let oListProduct = this._oView.byId("listProducts");
             let aItems = oListProduct.getItems();
             for (let i = 0; i < aItems.length; i++) {
                 let oBindingContext = aItems[i].getBindingContext('data');
@@ -267,7 +269,7 @@ sap.ui.define([
             MessageBox.information("Expiration Date set Successfully", {
                 styleClass: "sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer"
             });
-            let oDate = this.getView().byId('expirationDateDatePicker').getDateValue();
+            let oDate = this._oView.byId('expirationDateDatePicker').getDateValue();
             if (oDate) {
                 this._updateInfoForselectedItem({ expirationDate: oDate });
             }
@@ -289,7 +291,7 @@ sap.ui.define([
             MessageBox.information("Destination Bin changed Successfully", {
                 styleClass: "sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer"
             });
-            let sDestinationBin = this.getView().byId('ChangeDestinationBinInput').getSelectedItem().getText()
+            let sDestinationBin = this._oView.byId('ChangeDestinationBinInput').getSelectedItem().getText()
             if (sDestinationBin) {
                 this._updateInfoForselectedItem({ destinationBin: sDestinationBin + " HU6492-2" });
             }
@@ -300,7 +302,7 @@ sap.ui.define([
             this.oChangeDestinationBinDialog.close();
         },
         _updateInfoForselectedItem: function (oItemChange) {
-            let oModel = this.getView().getModel('data');
+            let oModel = this._oView.getModel('data');
             let oSelectedItem = oModel.getProperty("/selectedItem");
             let aKeys = Object.keys(oItemChange);
             for (let i = 0; i < aKeys.length; i++) {
@@ -310,7 +312,7 @@ sap.ui.define([
         },
         prepareViewBasedOnData: function (sPageId) {
             if (sPageId && sPageId.includes("detailPack8DivisionPage")) {
-                let oGrid = this.getView().byId('tote8Grid')
+                let oGrid = this._oView.byId('tote8Grid')
                 let aItems = oGrid.getItems()
                 for (let i = 0; i < aItems.length; i++) {
                     let oBindingContext = aItems[i].getBindingContext('data')
@@ -322,19 +324,19 @@ sap.ui.define([
                 }
 
             } else if (sPageId.includes("detailPackOtherPage")) {
-                let oModel = this.getView().getModel('data');
+                let oModel = this._oView.getModel('data');
                 let sCurrent = oModel.getProperty("/currentTote");
                 let sPath = `/Totes/${sCurrent}/status`;
                 if (oModel.getProperty(sPath) === "closed") {
-                    this.getView().byId('tote1BigCell').addStyleClass("packedBackground")
+                    this._oView.byId('tote1BigCell').addStyleClass("packedBackground")
                 } else {
-                    this.getView().byId('tote1BigCell').removeStyleClass("packedBackground")
+                    this._oView.byId('tote1BigCell').removeStyleClass("packedBackground")
                 }
 
             }
         },
         onCloseHUDecanting: function () {
-            let oModel = this.getView().getModel('data');
+            let oModel = this._oView.getModel('data');
 
             let aProducts = oModel.getProperty("/123/items");
             for (let i = 0; i < aProducts.length; i++) {
@@ -343,10 +345,10 @@ sap.ui.define([
             }
             oModel.setProperty("/Totes", {});            
 
-            let oSplitAppContainer = this.getView().byId('SplitAppDemo');
+            let oSplitAppContainer = this._oView.byId('SplitAppDemo');
             oSplitAppContainer.toDetail(this.createId("detailNoItemSelectedPage"));
 
-            const oRouter = this.getOwnerComponent().getRouter();
+            const oRouter = this._oRouter;
             oRouter.navTo("RouteScanHU", {wcId: oModel.getProperty("/SelectedWorkCenter")});
 
         }
