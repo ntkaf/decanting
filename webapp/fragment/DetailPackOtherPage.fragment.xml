@@ -5,7 +5,7 @@
   	xmlns:ux="sap.uxap"
   xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
   <Page id="detailPackOtherPage" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToProductsListPress"
-  title="{i18n>WorkCenter}: {data>/SelectedWorkCenter}">
+  title="{i18n>xtit.WorkCenter}: {data>/SelectedWorkCenter}">
   
 
     <ux:ObjectPageHeader id="headerForTestOne"

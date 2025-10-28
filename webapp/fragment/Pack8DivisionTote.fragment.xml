@@ -6,7 +6,7 @@
   xmlns:control="com.westernacher.decanting.ui.controls"
   xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
   <Page id="detailPack8DivisionPage" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToSelectTotePress"   
-  title="{i18n>WorkCenter}: {data>/SelectedWorkCenter}">
+  title="{i18n>xtit.WorkCenter}: {data>/SelectedWorkCenter}">
     	<!-- <ObjectHeader
 		id="oh1"
 		responsive="true"
