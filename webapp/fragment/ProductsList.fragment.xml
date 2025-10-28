@@ -27,7 +27,7 @@
 				<ObjectStatus title="{i18n>xtit.Scanned}" text="17:03:21"/>
         
         </HBox>
-        <Button text="{i18n>CloseHuDecanting}" class="sapUiSmallMarginTop" press="onCloseHUDecanting"/>
+        <Button text="{i18n>xtit.CloseHuDecanting}" class="sapUiSmallMarginTop" press="onCloseHUDecanting"/>
 			</l:VerticalLayout>
          
             </VBox>

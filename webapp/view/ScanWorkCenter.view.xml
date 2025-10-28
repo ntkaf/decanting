@@ -16,7 +16,7 @@
           <f:content>
             <VBox alignItems="Center" justifyContent="Center" width="100%" class="scanCardContent">
               <core:Icon src="sap-icon://projector" size="4rem"/>
-              <Title level="H1" class="sapUiSmallMarginTop" text="{i18n>ScanWorkCenter}" />
+              <Title level="H1" class="sapUiSmallMarginTop" text="{i18n>xtit.ScanWorkCenter}" />
               <Input
                 width="12rem"
                 id="ScanWorkCenterInput"
