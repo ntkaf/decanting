@@ -86,7 +86,7 @@ sap.ui.define([
         onBeforeRendering: function () {
             Card.prototype.onBeforeRendering.apply(this, arguments);
 
-            this._oTitle.setText(this.sTitleText);
+         //   this._oTitle.setText(this.sTitleText);
             this._oQuantityStepInput.setMax(this.getQuantityMaxValue());
             this._oQuantityStepInput.setValue(this.getQuantity());
 

@@ -58,9 +58,9 @@
         visible="{= ${data>/selectedItem/flags/requiresReconditioning}=== true? true: false}"/>
 
 
-      <control:Tote id="tote8Grid" labelTop="{i18n>xtit.A}" labelBottom="{i18n>xtit.D}" labelLeft="{i18n>xtit.B}" labelRight="{i18n>xtit.C}" divisions="{data>toteDivisions}">
+      <control:Tote id="tote8Grid" labelBottom="{i18n>xtit.B}" divisions="{data>toteDivisions}">
           <control:divisions>
-            <control:ToteDivision title="{data>name}" titleCloseButton="{i18n>xtit.Close}" 
+            <control:ToteDivision  titleCloseButton="{i18n>xtit.Close}" 
                   close="onCloseToteV2" productDescription="{data>itemDescription}" packedQuantity="{data>scanedAmount}" unit="{data>uom}" 
                   quantity="{parts:[{path: 'data>/selectedItem/quantity/amount'},{path: 'data>/selectedItem/quantity/scanedAmount'}], formatter: '.formatter.onFormatAvailableAmount'}"
                   quantityMaxValue="{data>/selectedItem/quantity/amount2}" state="{data>status}">

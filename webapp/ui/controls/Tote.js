@@ -11,10 +11,10 @@ sap.ui.define([
     return VBox.extend("com.westernacher.decanting.ui.controls.Tote", {
         metadata: {
             properties: {
-                labelTop: { type: "string" },
-                labelBottom: { type: "string" },
-                labelLeft: { type: "string" },
-                labelRight: { type: "string" }
+                // labelTop: { type: "string", default: "A" },
+                labelBottom: { type: "string", default: "A" }
+                //  labelLeft: { type: "string", default: "D"  },
+                // labelRight: { type: "string", default: "B"  }
             },
 
             aggregations: {
@@ -49,22 +49,37 @@ sap.ui.define([
 
 
         setLabelTop: function (sValue) {
-            this.setProperty("labelTop", sValue, true);
+            // this.setProperty("labelTop", sValue, true);
             this.getAggregation("_top").setText(sValue);
             return this;
         },
         setLabelBottom: function (sValue) {
             this.setProperty("labelBottom", sValue, true);
             this.getAggregation("_bottom").setText(sValue);
+            if (sValue === "B") {
+                this._setBatTheBottom();
+            } else {
+                this._setDatTheBottom();
+            }
             return this;
         },
+        _setBatTheBottom: function () {
+            this.setLabelTop("D");
+            this.setLabelLeft("C");
+            this.setLabelRight("A");
+        },
+        _setDatTheBottom: function () {
+            this.setLabelTop("B");
+            this.setLabelLeft("A");
+            this.setLabelRight("C");
+        },
         setLabelLeft: function (sValue) {
-            this.setProperty("labelLeft", sValue, true);
+            //this.setProperty("labelLeft", sValue, true);
             this._oLeft.setText(sValue);
             return this;
         },
         setLabelRight: function (sValue) {
-            this.setProperty("labelRight", sValue, true);
+            //this.setProperty("labelRight", sValue, true);
             this._oRight.setText(sValue);
             return this;
         },
@@ -74,22 +89,43 @@ sap.ui.define([
             this._oGrid.setDefaultIndent(this._getIndent());
 
             this._oGrid.removeAllContent();
-
+            this._addLabelsForDivisions()
             this.getDivisions().forEach(function (oDiv) {
                 oDiv.destroyLayoutData();
                 this._oGrid.addContent(oDiv);
             }.bind(this));
 
-            this._oLeft.setText(this.getLabelLeft());
-            this._oRight.setText(this.getLabelRight());
-            this.getAggregation("_top").setText(this.getLabelTop());
-            this.getAggregation("_bottom").setText(this.getLabelBottom());
+            //  this._oLeft.setText(this.getLabelLeft());
+            // this._oRight.setText(this.getLabelRight());
+            //  this.getAggregation("_top").setText(this.getLabelTop());
+            //   this.getAggregation("_bottom").setText(this.getLabelBottom());
 
             this.removeAllItems();
             this.addItem(this.getAggregation("_top"));
             this.addItem(this.getAggregation("_middle"));
             this.addItem(this.getAggregation("_bottom"));
         },
+        _addLabelsForDivisions: function () {
+            let aDivisions = this.getAggregation('divisions');
+            let sLabelBottom = this.getLabelBottom();
+            let bBottomOrder =  sLabelBottom === "D" ? true : false;
+            let iItemsInTheRow = Math.ceil(aDivisions.length / 2)
+            for (let i = 0; i< aDivisions.length; i++){
+                
+                let sLabel, sRowValue; 
+                if(i+1 <= iItemsInTheRow){
+                    sLabel = (i+1).toString() 
+                    sRowValue = bBottomOrder ? "-2" : "-1";                                  
+                }else{
+                    sLabel = ( (i+1)-iItemsInTheRow ).toString()
+                    sRowValue = bBottomOrder ? "-1" : "-2";
+                }
+                sLabel = sLabel + sRowValue;  
+                aDivisions[i].setTitle(sLabel)    ;
+            }
+
+        },
+
         _getSpan: function () {
             var iCount = this.getDivisions().length;
             let sSpan = "";
