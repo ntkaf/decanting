@@ -20,9 +20,9 @@
               <Input
                 width="12rem"
                 id="ScanWorkCenterInput"
-                placeholder="{i18n>ScanOrEnterWorkstation}"
+                placeholder="{i18n>xtit.ScanOrEnterWorkstation}"
                 class="sapUiMediumMarginTop"/>
-                <Button text="{i18n>Next}" press="onPressConfirmWorkStationButton" width="12rem"/>
+                <Button text="{i18n>xtit.Next}" press="onPressConfirmWorkStationButton" width="12rem"/>
             </VBox>
           </f:content>
         </f:Card>

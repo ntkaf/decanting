@@ -22,8 +22,8 @@
       </headerContainer>
     </ObjectHeader> -->
     	<ux:ObjectPageHeader id="headerForTest"
-							  objectTitle="TOTE-{data>ToteId}"							  
-							  objectSubtitle="8-Division Tote"
+							  objectTitle="{i18n>xtit.Tote}-{data>ToteId}"							  
+							  objectSubtitle="{i18n>xtit.8DivisionTote}"
 							  isActionAreaAlwaysVisible="true"
 							  showPlaceholder="true">
 				<!-- <ux:navigationBar>
@@ -37,20 +37,20 @@
 					</Bar>
 				</ux:navigationBar> -->
 				<ux:actions>
-					<ux:ObjectPageHeaderActionButton press="onCompleteTotePress" text="{i18n>CompleteTote}" tooltip="tree" hideText="false" type="Default"/>
-					<ux:ObjectPageHeaderActionButton press="onChangeTotePress" text="{i18n>ChangeTote}" tooltip="action" hideText="false" type="Default"/>
+					<ux:ObjectPageHeaderActionButton press="onCompleteTotePress" text="{i18n>xtit.CompleteTote}" tooltip="tree" hideText="false" type="Default"/>
+					<ux:ObjectPageHeaderActionButton press="onChangeTotePress" text="{i18n>xtit.ChangeTote}" tooltip="action" hideText="false" type="Default"/>
 				</ux:actions>
 			</ux:ObjectPageHeader>
     <content>
     <MessageStrip
-				text="{i18n>FirstTimeProductMessage}"
+				text="{i18n>xtit.FirstTimeProductMessage}"
 				type="Information"
 				showIcon="true"
 				showCloseButton="false"
 				class="sapUiMediumMargin"
         visible="{= ${data>/selectedItem/flags/firstReceipt}=== true? true: false}"/>
            <MessageStrip
-				text="{i18n>RequiresReconditioningMessage}"
+				text="{i18n>xtit.RequiresReconditioningMessage}"
 				type="Information"
 				showIcon="true"
 				showCloseButton="false"
@@ -58,9 +58,9 @@
         visible="{= ${data>/selectedItem/flags/requiresReconditioning}=== true? true: false}"/>
 
 
-      <control:Tote id="tote8Grid" labelTop="A" labelBottom="D" labelLeft="B" labelRight="C" divisions="{data>toteDivisions}">
+      <control:Tote id="tote8Grid" labelTop="{i18n>xtit.A}" labelBottom="{i18n>xtit.D}" labelLeft="{i18n>xtit.B}" labelRight="{i18n>xtit.C}" divisions="{data>toteDivisions}">
           <control:divisions>
-            <control:ToteDivision title="{data>name}" titleCloseButton="{i18n>Close}" 
+            <control:ToteDivision title="{data>name}" titleCloseButton="{i18n>xtit.Close}" 
                   close="onCloseToteV2" productDescription="{data>itemDescription}" packedQuantity="{data>scanedAmount}" unit="{data>uom}" 
                   quantity="{parts:[{path: 'data>/selectedItem/quantity/amount'},{path: 'data>/selectedItem/quantity/scanedAmount'}], formatter: '.formatter.onFormatAvailableAmount'}"
                   quantityMaxValue="{data>/selectedItem/quantity/amount2}" state="{data>status}">

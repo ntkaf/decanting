@@ -15,13 +15,13 @@
           <f:content>
             <VBox alignItems="Center" justifyContent="Center" width="100%" class="scanCardContent">
               <core:Icon src="sap-icon://bar-code" size="4rem"/>
-              <Title level="H1" class="sapUiSmallMarginTop" text="{i18n>ScanDestinationHU}" />
+              <Title level="H1" class="sapUiSmallMarginTop" text="{i18n>xtit.ScanDestinationHU}" />
               <Input
                 width="12rem"
                 id="ScanDestinationHUInput"
-                placeholder="{i18n>ScanOrEnterDestinationHU}"
+                placeholder="{i18n>xtit.ScanOrEnterDestinationHU}"
                 class="sapUiMediumMarginTop" />
-                <Button text="{i18n>Next}" press="onPressConfirmScanHUButton" width="12rem"/>
+                <Button text="{i18n>xtit.Next}" press="onPressConfirmScanHUButton" width="12rem"/>
             </VBox>
           </f:content>
         </f:Card>

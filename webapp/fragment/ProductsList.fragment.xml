@@ -9,7 +9,7 @@
     <content>
     <Toolbar>
      <core:Icon src="sap-icon://product" class="sapUiTinyMarginEnd"/>
-            <Title text="{i18n>HUDetails}"/>
+            <Title text="{i18n>xtit.HUDetails}"/>
             </Toolbar>
     
     <VBox class="huHeaderBorder sapUiTinyMargin">
@@ -19,12 +19,12 @@
 			<l:VerticalLayout class="sapUiSmallMargin">
       <HBox>
       <core:Icon src="sap-icon://map" color="blue" class="sapUiSmallMarginEnd"/>
-				<ObjectStatus title="Location" text="{data>/123/Location}"/>
+				<ObjectStatus title="{i18n>xtit.Location}" text="{data>/123/Location}"/>
         </HBox>
         
         <HBox>
       <core:Icon src="sap-icon://date-time" color="blue" class="sapUiSmallMarginEnd"/>
-				<ObjectStatus title="Scanned" text="17:03:21"/>
+				<ObjectStatus title="{i18n>xtit.Scanned}" text="17:03:21"/>
         
         </HBox>
         <Button text="{i18n>CloseHuDecanting}" class="sapUiSmallMarginTop" press="onCloseHUDecanting"/>
@@ -33,10 +33,10 @@
             </VBox>
             <Toolbar>
             <core:Icon src="sap-icon://lightbulb" class="sapUiTinyMarginEnd"/>
-            <Title text="{i18n>Products}"/>
+            <Title text="{i18n>xtit.Products}"/>
             </Toolbar>
               <Toolbar>
-            <Input placeholder="{i18n>ScanProduct}" />
+            <Input placeholder="{i18n>xtit.ScanProduct}" />
             </Toolbar>
       <List
         id="listProducts"

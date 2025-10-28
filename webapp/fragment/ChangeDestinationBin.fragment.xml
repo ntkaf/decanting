@@ -21,7 +21,7 @@
 			columnsM="1"
 			singleContainerFullSize="false" >
 			<f:content>
-				<Label text="Storage Type" />				
+				<Label text="{i18n>xtit.StorageType}" />				
 				<Select id="ChangeDestinationBinInput" items="{data>/StorageTypes}">
                 	<core:Item key="{data>key}" text="{data>text}" />
                 </Select>
