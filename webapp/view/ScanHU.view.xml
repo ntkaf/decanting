@@ -7,7 +7,7 @@
     <content>
      <Toolbar >
      <ToolbarSpacer/>
-     <Title text="{i18n>WorkCenter}: {data>/SelectedWorkCenter}"/>
+     <Title text="{i18n>xtit.WorkCenter}: {data>/SelectedWorkCenter}"/>
      <ToolbarSpacer/>
      </Toolbar>
       <FlexBox
@@ -24,10 +24,10 @@
               <Input
                 width="12rem"
                 id="ScanHUInput"
-                placeholder="Scan or enter HU"
+                placeholder="{i18n>xtit.ScanOrEntHu}"
                 class="sapUiMediumMarginTop"
                 search=".onSearchHU" />
-                <Button text="{i18n>Next}" press="onPressConfirmHUButton" width="12rem"/>
+                <Button text="{i18n>xtit.Next}" press="onPressConfirmHUButton" width="12rem"/>
             </VBox>
           </f:content>
         </f:Card>

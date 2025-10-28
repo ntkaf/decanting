@@ -26,41 +26,41 @@
 			columnsM="1"
 			singleContainerFullSize="false" >
 			<f:content>
-				<Label text="Id" />
+				<Label text="{i18n>xtit.Id}" />
 				<Text id="nameText" text="{data>itemId}" />
-				<Label text="EAN" />
+				<Label text="{i18n>xtit.EAN}" />
 				<Text text="{data>ean}" />
-				<Label text="PO" />
+				<Label text="{i18n>xtit.PO}" />
 				<Text text="{data>poNumber}" />
-				<Label text="Vendor" />
+				<Label text="{i18n>xtit.Vendor}" />
 				<Text text="{data>vendor/name}" />
-        <Label text="L / W / H" />
+        <Label text="{i18n>xtit.LHW}" />
 				<Text text="{data>dimensions/lengthCm} / {data>dimensions/widthCm} / {data>dimensions/heightCm} cm" />
-        <Label text="Volume" />
+        <Label text="{i18n>xtit.Volume}" />
 				<Text text="{data>volumeM3} m3" />
-        <Label text="Weight" />
+        <Label text="{i18n>xtit.Weight}" />
 				<Text text="{data>weightKg} kg" />
-				<Label text="Number" />
+				<Label text="{i18n>xtit.Number}" />
 				<Text text="{data>quantity/amount} {data>quantity/uom}" />
-				<Label text="Expiration Date" />
+				<Label text="{i18n>xtit.ExpirationDate}" />
 				<Text text="{path:'data>expirationDate', formatter:'.formatter.onFormatDate'}" />
-				<Label text="Next dest Bin" />
+				<Label text="{i18n>xtit.NextdestBin}" />
 				<Text text="{data>destinationBin}" />
-				<Label text="Final dest Bin" />
+				<Label text="{i18n>xtit.FinalDestBin}" />
 				<Text text="{data>destinationBin}" />
 
 				
 			</f:content>
 		</f:SimpleForm> 
 		<HBox>
-		<Button text="{i18n>PrintLabels}" press="onPressPrintLabel" class="sapUiSmallMarginEnd"/>
-		<Button text="{i18n>SetExpirationDate}" press="onPressSetExpirationDate" />
+		<Button text="{i18n>xtit.PrintLabels}" press="onPressPrintLabel" class="sapUiSmallMarginEnd"/>
+		<Button text="{i18n>xtit.SetExpirationDate}" press="onPressSetExpirationDate" />
 		
 		<!-- <Button text="{i18n>ChangeDestinationBin}" press="onPressChangeDestinationBin" /> -->
 		</HBox>
 <HBox>
 
-		<Button text="{i18n>ChangeDestinationBin}" press="onPressChangeDestinationBin" />
+		<Button text="{i18n>xtit.ChangeDestinationBin}" press="onPressChangeDestinationBin" />
 		<!-- <Button text="{i18n>ChangeDestinationBin}" press="onPressChangeDestinationBin" /> -->
 		</HBox>
 		</Panel>

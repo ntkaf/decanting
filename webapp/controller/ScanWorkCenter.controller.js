@@ -1,17 +1,23 @@
 
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "./BaseController",
     "sap/m/MessageToast"
-], function (Controller, MessageToast) {
+], function (BaseController, MessageToast) {
     "use strict";
 
-    return Controller.extend("com.westernacher.decanting.controller.ScanWorkCenter", {
+    return BaseController.extend("com.westernacher.decanting.controller.ScanWorkCenter", {
+        onInit:function(){
+            this._oComponent=this.getOwnerComponent();
+            this._oRouter= this.getOwnerComponent().getRouter();
+            this._oView = this.getView();
+        },
         /** Handle Enter/scan in the SearchField */
         onSearchHU: function (oEvent) {
             // Read HU from the SearchField (works for Enter or scan suffix)
             var sHu = oEvent.getParameter("query") || oEvent.getSource().getValue();
             if (!sHu) {
-                MessageToast.show("Please enter HU.");
+                //MessageToast.show("Please enter HU.");
+                this.showMessageToast("xmsg.Message2")
                 return;
             }
             // TODO: validate HU, then route to details (example)
@@ -24,7 +30,7 @@ sap.ui.define([
             const sWC = oField ? oField.getValue().trim() : "";
 
             if (!sWC) {
-                MessageToast.show("Please enter HU before continuing.");
+                this.showMessageToast("xmsg.Message1")
                 return;
             }
 

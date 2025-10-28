@@ -21,21 +21,21 @@
 			columnsM="1"
 			singleContainerFullSize="false" >
 			<f:content>
-				<Label text="Select Printer" />
+				<Label text="{i18n>xtit.SelectPrinter}" />
 				<Select id="printLabels" items="{data>/Printers}">
                 	<core:Item key="{data>key}" text="{data>text}" />
                 </Select>
-				<Label text="Quantity" />
+				<Label text="{i18n>xtit.Quantity}" />
 				<Input type="Number" />
 			</f:content>
            
 		</f:SimpleForm> 
          </content>
          <beginButton>
-         <Button text="Close" press="onCancelPrintLabels"/>
+         <Button text="{i18n>xtit.Close}" press="onCancelPrintLabels"/>
             </beginButton>
             <endButton>
-             <Button text="Print" type="Emphasized" press="onConfirmPrintLabel"/>
+             <Button text="{i18n>xtit.Print}" type="Emphasized" press="onConfirmPrintLabel"/>
             </endButton>
         
 </Dialog>

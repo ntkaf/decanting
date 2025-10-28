@@ -5,30 +5,30 @@
   	xmlns:ux="sap.uxap"
   xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
   <Page id="detailPackOtherPage" class="sapUiNoContentPadding" showNavButton="true" navButtonPress="onBackToProductsListPress"
-  title="{i18n>WorkCenter}: {data>/SelectedWorkCenter}">
+  title="{i18n>xtit.WorkCenter}: {data>/SelectedWorkCenter}">
   
 
     <ux:ObjectPageHeader id="headerForTestOne"
-                         objectTitle="TOTE-{data>ToteId}"
+                         objectTitle="{i18n>xtit.Tote}-{data>ToteId}"
                          objectSubtitle="1-Division Tote"
                          isActionAreaAlwaysVisible="true"
                          showPlaceholder="true">
       <ux:actions>
-        <ux:ObjectPageHeaderActionButton press="onCompleteTotePress" text="{i18n>CompleteTote}" hideText="false" type="Default"/>
-        <ux:ObjectPageHeaderActionButton press="onChangeTotePress" text="{i18n>ChangeTote}" hideText="false" type="Default"/>
+        <ux:ObjectPageHeaderActionButton press="onCompleteTotePress" text="{i18n>xtit.CompleteTote}" hideText="false" type="Default"/>
+        <ux:ObjectPageHeaderActionButton press="onChangeTotePress" text="{i18n>xtit.ChangeTote}" hideText="false" type="Default"/>
       </ux:actions>
     </ux:ObjectPageHeader>
 
     <content>
 
-      <MessageStrip text="{i18n>FirstTimeProductMessage}"
+      <MessageStrip text="{i18n>xtit.FirstTimeProductMessage}"
                     type="Information"
                     showIcon="true"
                     showCloseButton="false"
                     class="sapUiMediumMargin"
                     visible="{= ${data>/selectedItem/flags/firstReceipt} === true }"/>
 
-      <MessageStrip text="{i18n>RequiresReconditioningMessage}"
+      <MessageStrip text="{i18n>xtit.RequiresReconditioningMessage}"
                     type="Information"
                     showIcon="true"
                     showCloseButton="false"
@@ -77,7 +77,7 @@
                 <Button id="tote1BigCloseBtn"
                         width="100%"
                         press=".onCloseTote"
-                        text="{i18n>Close}"
+                        text="{i18n>xtit.Close}"
                         class="toteCellBtn"
                         app:divisionId="{data>id}"
                         visible="{= ${data>status} === 'selected' }"/>

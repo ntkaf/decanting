@@ -2,10 +2,10 @@
   xmlns:core="sap.ui.core"
   xmlns:f="sap.ui.layout.form"
   xmlns="sap.m">
-  <Page id="detailNoItemSelectedPage" class="sapUiNoContentPadding" title="{i18n>WorkCenter}: {data>/SelectedWorkCenter}">
+  <Page id="detailNoItemSelectedPage" class="sapUiNoContentPadding" title="{i18n>xtit.WorkCenter}: {data>/SelectedWorkCenter}">
   	<IllustratedMessage
 					illustrationType="sapIllus-NoSearchResults"
-					title="{i18n>SelectProduct}"
-          description="{i18n>SelectProductDescription}"/>
+					title="{i18n>xtit.SelectProduct}"
+          description="{i18n>xtit.SelectProductDescription}"/>
   </Page>
   </core:FragmentDefinition>

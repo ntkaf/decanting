@@ -1,27 +1,28 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+     "./BaseController",
     "sap/m/MessageToast"
-], function (Controller, MessageToast) {
+], function (BaseController, MessageToast) {
     "use strict";
 
-    return Controller.extend("com.westernacher.decanting.controller.ScanHU", {
+    return BaseController.extend("com.westernacher.decanting.controller.ScanHU", {
         onInit: function () {
-
-            var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.getRoute("RouteScanHU").attachPatternMatched(this._onScanHURouteMatched.bind(this), this);
+            this._oComponent=this.getOwnerComponent();
+            this._oRouter= this.getOwnerComponent().getRouter();
+            this._oView = this.getView();
+            this._oRouter.getRoute("RouteScanHU").attachPatternMatched(this._onScanHURouteMatched.bind(this), this);
         },
         _onScanHURouteMatched: function (oEvent) {
             var oArgs = oEvent.getParameter("arguments") || {};
             var sWcIdEncoded = oArgs.wcId || (oArgs.query && oArgs.query.wcId);
 
             var sWcId = sWcIdEncoded ? decodeURIComponent(sWcIdEncoded) : "";
-            this.getView().getModel("data").setProperty("/SelectedWorkCenter", sWcId);
+            this._oView.getModel("data").setProperty("/SelectedWorkCenter", sWcId);
             this.byId("ScanHUInput").setValue("");
         },
         onSearchHU: function (oEvent) {
             var sHu = oEvent.getParameter("query") || oEvent.getSource().getValue();
             if (!sHu) {
-                MessageToast.show("Please enter HU.");
+                this.showMessageToast("xmsg.Message2")
                 return;
             }
             MessageToast.show("HU: " + sHu);
@@ -31,14 +32,14 @@ sap.ui.define([
             const sHu = oField ? oField.getValue().trim() : "";
 
             if (!sHu) {
-                MessageToast.show("Please enter HU before continuing.");
+                this.showMessageToast("xmsg.Message1")
                 return;
             }
 
             const oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("RouteDecanting", {
                 huId: encodeURIComponent(sHu),
-                wcId: this.getView().getModel("data").getProperty("/SelectedWorkCenter")
+                wcId: this._oView.getModel("data").getProperty("/SelectedWorkCenter")
             });
         }
     });

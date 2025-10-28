@@ -21,7 +21,7 @@
 			columnsM="1"
 			singleContainerFullSize="false" >
 			<f:content>
-				<Label text="Expiration Date" />
+				<Label text="{i18n>xtit.ExpirationDate}" />
 				<DatePicker id="expirationDateDatePicker"/>
 				
 			</f:content>
@@ -29,10 +29,10 @@
 		</f:SimpleForm> 
          </content>
          <beginButton>
-         <Button text="Close" press="onCancelSetExpirationDate"/>
+         <Button text="{i18n>xtit.Close}" press="onCancelSetExpirationDate"/>
             </beginButton>
             <endButton>
-             <Button text="Change" type="Emphasized" press="onConfirmSetExpirationDate"/>
+             <Button text="{i18n>xtit.Change}" type="Emphasized" press="onConfirmSetExpirationDate"/>
             </endButton>
         
 </Dialog>
