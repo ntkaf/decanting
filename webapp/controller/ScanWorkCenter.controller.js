@@ -1,11 +1,11 @@
 
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "./BaseController",
     "sap/m/MessageToast"
-], function (Controller, MessageToast) {
+], function (BaseController, MessageToast) {
     "use strict";
 
-    return Controller.extend("com.westernacher.decanting.controller.ScanWorkCenter", {
+    return BaseController.extend("com.westernacher.decanting.controller.ScanWorkCenter", {
         /** Handle Enter/scan in the SearchField */
         onSearchHU: function (oEvent) {
             // Read HU from the SearchField (works for Enter or scan suffix)

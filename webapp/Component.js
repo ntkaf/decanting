@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "com/westernacher/decanting/model/models"
-], (UIComponent, models) => {
+    "com/westernacher/decanting/model/models",
+     "./controller/ErrorHandler",
+], (UIComponent, models,ErrorHandler) => {
     "use strict";
 
     return UIComponent.extend("com.westernacher.decanting.Component", {
@@ -21,6 +22,8 @@ sap.ui.define([
 
             // enable routing
             this.getRouter().initialize();
+            //this.oErrorHandler = new ErrorHandler(this);
+
         }
     });
 });

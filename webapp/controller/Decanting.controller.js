@@ -1,11 +1,11 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+     "./BaseController",
     "com/westernacher/decanting/model/formatter",
     "sap/m/MessageBox"
-], (Controller, formatter, MessageBox) => {
+], (BaseController, formatter, MessageBox) => {
     "use strict";
 
-    return Controller.extend("com.westernacher.decanting.controller.Decanting", {
+    return BaseController.extend("com.westernacher.decanting.controller.Decanting", {
         formatter: formatter,
         onInit: function () {
             var oRouter = this.getOwnerComponent().getRouter();

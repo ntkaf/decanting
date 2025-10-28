@@ -1,10 +1,10 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+     "./BaseController",
     "sap/m/MessageToast"
-], function (Controller, MessageToast) {
+], function (BaseController, MessageToast) {
     "use strict";
 
-    return Controller.extend("com.westernacher.decanting.controller.ScanHU", {
+    return BaseController.extend("com.westernacher.decanting.controller.ScanHU", {
         onInit: function () {
 
             var oRouter = this.getOwnerComponent().getRouter();
