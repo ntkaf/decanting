@@ -46,6 +46,7 @@ sap.ui.define([
             const sDestHu = oField ? oField.getValue().trim() : "";
 
             if (!sDestHu) {
+                this.showMessageToast("xmsg.Message1")
                 MessageToast.show("Please enter HU before continuing.");
                 return;
             }

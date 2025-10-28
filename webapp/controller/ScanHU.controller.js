@@ -21,7 +21,7 @@ sap.ui.define([
         onSearchHU: function (oEvent) {
             var sHu = oEvent.getParameter("query") || oEvent.getSource().getValue();
             if (!sHu) {
-                MessageToast.show("Please enter HU.");
+                this.showMessageToast("xmsg.Message2")
                 return;
             }
             MessageToast.show("HU: " + sHu);
@@ -31,7 +31,7 @@ sap.ui.define([
             const sHu = oField ? oField.getValue().trim() : "";
 
             if (!sHu) {
-                MessageToast.show("Please enter HU before continuing.");
+                this.showMessageToast("xmsg.Message1")
                 return;
             }
 

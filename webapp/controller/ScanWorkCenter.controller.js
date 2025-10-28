@@ -11,7 +11,8 @@ sap.ui.define([
             // Read HU from the SearchField (works for Enter or scan suffix)
             var sHu = oEvent.getParameter("query") || oEvent.getSource().getValue();
             if (!sHu) {
-                MessageToast.show("Please enter HU.");
+                //MessageToast.show("Please enter HU.");
+                this.showMessageToast("xmsg.Message2")
                 return;
             }
             // TODO: validate HU, then route to details (example)
@@ -24,7 +25,7 @@ sap.ui.define([
             const sWC = oField ? oField.getValue().trim() : "";
 
             if (!sWC) {
-                MessageToast.show("Please enter HU before continuing.");
+                this.showMessageToast("xmsg.Message1")
                 return;
             }
 
