@@ -37,6 +37,16 @@ sap.ui.define([
             const oRouter = this.getOwnerComponent().getRouter();
 
           oRouter.navTo("RouteScanHU", { wcId: encodeURIComponent(sWC) });
+        },
+        onWorkCenterListPress:function(oEvent){
+            console.log("list pressed")
+            var sWC=oEvent.getSource().getBindingContext("data2").getObject().title;
+            console.log(sWC)
+            if (!sWC) {
+                this.showMessageToast("xmsg.Message1")
+                return;
+            }
+            this._oRouter.navTo("RouteScanHU", { wcId:sWC });
         }
     });
 });

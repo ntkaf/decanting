@@ -1,33 +1,84 @@
-<mvc:View controllerName="com.westernacher.decanting.controller.ScanWorkCenter"
+<mvc:View
+    controllerName="com.westernacher.decanting.controller.ScanWorkCenter"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:f="sap.f"
-    xmlns:core="sap.ui.core">
-    <Page id="scanWorkCenterPage" enableScrolling="false">
-    <content>
-   
-      <FlexBox
-        alignItems="Center"
-        justifyContent="Center"
-        fitContainer="true"
-        class="sapUiResponsiveContentPadding scanContainer">
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        id="scanWorkCenterPage"
+        enableScrolling="false"
+    >
+        <content>
+            <FlexBox
+                alignItems="Center"
+                justifyContent="Center"
+                fitContainer="true"
+                class="sapUiResponsiveContentPadding scanContainer"
+            >
+                <f:Card
+                    width="28rem"
+                    class="scanCard"
+                >
+                    <f:content>
+                        <VBox
+                            alignItems="Center"
+                            justifyContent="Center"
+                            width="100%"
+                            height="80%"
+                            class="scanCardContent"
+                        >
+                            <core:Icon
+                                src="sap-icon://projector"
+                                size="4rem"
+                            />
+                            <Title
+                                level="H1"
+                                class="sapUiSmallMarginTop"
+                                text="{i18n>xtit.ScanWorkCenter}"
+                            />
+                            <FlexBox
+                                fitContainer="true"
+                                direction="Column"
+                                alignItems="Start"
+                                height="350px"
+                                class="sapUiSmallMarginTop"
+                            >
+                                <ScrollContainer
+                                    height="100%"
+                                    width="100%"
+                                    vertical="true"
+                                    focusable="true"
+                                >
+                                    <List
+                                        id="list"
+                                        growing="true"
+                                        growingThreshold="3"
+                                        growingScrollToLoad="true"
+                                        items="{
+                    path: 'data2>/results'
+                  }"
+                                    >
+                                        <StandardListItem
+                                            type="Navigation"
+                                            title="{data2>title}"
+                                            description="{data2>description}"
+                                            press="onWorkCenterListPress"
+                                        />
+                                    </List>
+                                </ScrollContainer>
+                            </FlexBox>
 
-        <f:Card width="28rem" class="scanCard">
-          <f:content>
-            <VBox alignItems="Center" justifyContent="Center" width="100%" class="scanCardContent">
-              <core:Icon src="sap-icon://projector" size="4rem"/>
-              <Title level="H1" class="sapUiSmallMarginTop" text="{i18n>xtit.ScanWorkCenter}" />
-              <Input
+                            <!--<Input
                 width="12rem"
                 id="ScanWorkCenterInput"
                 placeholder="{i18n>xtit.ScanOrEnterWorkstation}"
                 class="sapUiMediumMarginTop"/>
-                <Button text="{i18n>xtit.Next}" press="onPressConfirmWorkStationButton" width="12rem"/>
-            </VBox>
-          </f:content>
-        </f:Card>
-
-      </FlexBox>
-    </content>
-  </Page>
-    </mvc:View>
+                <Button text="{i18n>xtit.Next}" press="onPressConfirmWorkStationButton" width="12rem"/> -->
+                        </VBox>
+                    </f:content>
+                </f:Card>
+            </FlexBox>
+        </content>
+    </Page>
+</mvc:View>

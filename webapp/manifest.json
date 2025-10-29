@@ -19,6 +19,10 @@
       "HU": {
         "type": "JSON",
         "uri": "model/HUDetails.json"
+      },
+      "WorkCenter": {
+        "type": "JSON",
+        "uri": "model/WorkCenter.json"
       }
     }
   },
@@ -61,6 +65,13 @@
       "data":{
         "type": "sap.ui.model.json.JSONModel",
         "dataSource": "HU",
+        "settings": {
+          "sizeLimit": 1000
+        }
+      },
+      "data2":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "WorkCenter",
         "settings": {
           "sizeLimit": 1000
         }
