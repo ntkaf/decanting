@@ -39,9 +39,7 @@ sap.ui.define([
           oRouter.navTo("RouteScanHU", { wcId: encodeURIComponent(sWC) });
         },
         onWorkCenterListPress:function(oEvent){
-            console.log("list pressed")
-            var sWC=oEvent.getSource().getBindingContext("data2").getObject().title;
-            console.log(sWC)
+            var sWC=oEvent.getSource().getBindingContext("data").getObject().title;
             if (!sWC) {
                 this.showMessageToast("xmsg.Message1")
                 return;

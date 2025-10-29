@@ -472,5 +472,16 @@
     },{
       "key": "HB00",
       "text": "High Bay"
-    }]
+    }],
+  "WorkCenters":[
+      {
+          "title":"WorkCenter 1"
+      },
+      {
+          "title":"WorkCenter 2"
+      },
+      {
+          "title":"WorkCenter 3"
+      }
+  ]
 }
