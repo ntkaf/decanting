@@ -41,7 +41,7 @@
                                 fitContainer="true"
                                 direction="Column"
                                 alignItems="Start"
-                                height="350px"
+                                height="150px"
                                 class="sapUiSmallMarginTop"
                             >
                                 <ScrollContainer
@@ -56,13 +56,12 @@
                                         growingThreshold="3"
                                         growingScrollToLoad="true"
                                         items="{
-                    path: 'data2>/results'
-                  }"
+                                        path: 'data>/WorkCenters'
+                                      }"
                                     >
                                         <StandardListItem
                                             type="Navigation"
-                                            title="{data2>title}"
-                                            description="{data2>description}"
+                                            title="{data>title}"
                                             press="onWorkCenterListPress"
                                         />
                                     </List>
